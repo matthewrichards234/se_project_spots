@@ -1,0 +1,30 @@
+.cards {
+  padding: 0 80px 0 80px;
+}
+
+.box {
+  width: 1280px;
+  height: 970px;
+  background-color: lightgray;
+  border: 2px solid black;
+  display: grid;
+  grid-template-rows: repeat(auto-fit, 413px);
+  grid-template-columns: repeat(auto-fit, 413px);
+  gap: 10px;
+  padding: 10px;
+}
+
+.item {
+  background-color: lightcoral;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 7px;
+}
+
+.image {
+  width: 413px;
+  height: 413px;
+}
