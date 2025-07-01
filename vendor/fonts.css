@@ -2,10 +2,12 @@
   src: url("./fonts/Poppins/Poppins-Black.ttf") format("truetype");
   font-style: normal;
   font-family: "Poppins";
+  font-weight: 700;
 }
 
 @font-face {
-  src: url("./fonts/Ubuntu/Ubuntu-Regular.ttf") format("truetype");
+  src: url("./fonts/Poppins/Poppins-Regular.ttf") format("truetype");
   font-style: normal;
-  font-family: "Ubuntu";
+  font-family: "Poppins";
+  /* font-weight: 500; */
 }

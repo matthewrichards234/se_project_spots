@@ -1,0 +1,11 @@
+.footer__copyright {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: #212121b2;
+  opacity: 0.7;
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
