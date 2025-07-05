@@ -1,8 +1,10 @@
-# 🟣 Spots — Static Social Media Web App
+# 🟣 Spots — Social Media Web App
+
+🔗 **Live Demo**: [https://matthewrichards234.github.io/se_project_spots/](https://matthewrichards234.github.io/se_project_spots/)
 
 ## 🔍 Overview
 
-**Spots** is a front-end-only static social media-style web app where users can view posts, like them, and see a sample profile. Designed with accessibility and scalability in mind, Spots is built entirely with HTML and CSS — **no JavaScript** involved. The layout is responsive and visually driven, closely following a custom **Figma** design.
+**Spots** is a front-end-only static social media-style web app where users can view posts, like them, and see a sample profile. Designed with accessibility and scalability in mind, Spots is built entirely with HTML and CSS — **no JavaScript** involved (yet). The layout is responsive and visually driven, closely following a custom **Figma** design.
 
 ---
 
