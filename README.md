@@ -40,8 +40,10 @@
     <button class="card__like-btn"></button>
   </div>
 </li>
+```
 
-## 🧠 What I Learned - Built a complete static web app using only **HTML and
+## 🧠 What I Learned - Built a complete static web app using only \*\*HTML and
+
 CSS** - Implemented **responsive layouts** with CSS Grid and media queries -
 Translated a **Figma design** into clean, structured code - Organized styles
 using **modular, block-based CSS** - Imported custom fonts locally using
@@ -50,5 +52,8 @@ JavaScript --- ## 🚧 Planned Improvements - Add JavaScript for **post
 creation**, **like counters**, and other dynamic features - Implement **form
 validation** and **modals** for editing profiles or adding posts - Expand user
 experience by creating a **dedicated profile page** - Introduce **dark mode
-support** with a toggle switch
+support\*\* with a toggle switch
+
+```
+
 ```
