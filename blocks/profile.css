@@ -45,6 +45,8 @@
 }
 
 .profile__edit-btn {
+  display: flex;
+  gap: 8px;
   margin-top: auto;
   background: transparent;
   border: none;
@@ -64,13 +66,17 @@
 }
 
 .profile__add-btn {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
   margin-left: auto;
   margin-top: auto;
   padding: 18px 32px 18px 32px;
   height: 52px;
   border-radius: 8px;
   border: none;
-  background-color: black;
+  background-color: #212121;
   color: #fcf5e5;
   font-weight: 500;
   font-size: 16px;

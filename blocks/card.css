@@ -10,25 +10,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 12px;
 }
 
 .card__title {
   text-overflow: ellipsis;
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  max-width: 413px;
+  max-width: 350px;
   font-weight: 500;
   font-size: 20px;
   line-height: 120%;
   letter-spacing: 0;
-  margin-top: 12px;
+  margin-top: 0;
   margin-bottom: 0;
+  white-space: nowrap;
 }
 
 .card__like-btn {
-  background-image: url(../images/Like-Icon.svg);
+  background-image: url(../images/like-icon-dark.svg);
   width: 23px;
   height: 20px;
   border: none;
@@ -40,7 +39,6 @@
 
 .card__like-btn:hover {
   opacity: 100%;
-  color: black;
 }
 
 @media screen and (max-width: 627px) {
@@ -49,7 +47,7 @@
   }
 
   .card__title {
-    max-width: 288px;
-    margin-bottom: 0;
+    max-width: 250px;
+    font-size: 16px;
   }
 }
