@@ -152,6 +152,35 @@
         </div>
       </div>
 
+      <div class="modal modal_is-opened">
+        <div class="modal__container">
+          <h2 class="modal__title">New post</h2>
+          <button type="button" class="modal__close-btn">X</button>
+          <form action="submit" class="modal__form">
+            <label for="image-link-input" class="modal__label">
+              <input
+                type="text"
+                class="modal__input"
+                id="image-link-input"
+                name="image-link"
+                placeholder="Paste a link to the picture"
+              />
+            </label>
+
+            <label for="image-caption-input" class="modal__label">
+              <input
+                type="text"
+                class="modal__input"
+                id="iimage-caption-input"
+                name="image-caption"
+                placeholder="Type your caption"
+              />
+            </label>
+            <button type="submit" class="model__submit-button">Save</button>
+          </form>
+        </div>
+      </div>
+
       <!-- this modal should be hidden -->
       <div class="modal">
         <div class="modal__container"></div>
