@@ -68,9 +68,8 @@
   width: 100%;
   padding: 16px 0 16px 12px;
   border-radius: 8px;
-  opacity: 40%;
   margin-bottom: 32px;
-  border: solid #21212166;
+  border: solid #21212166 1px;
 }
 
 .modal__input::placeholder {
