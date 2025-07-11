@@ -1,8 +1,3 @@
-/* TO - DO : 
-1. Add event listener to edit profile.
-2. Add event listener to new post.
-*/
-
 // Edit Profile & Add Post buttons selected.
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const addPostBtn = document.querySelector(".profile__add-btn");
@@ -14,12 +9,22 @@ const addPostModal = document.querySelector("#new-post-modal");
 
 // Exit Buttons selected on their respective Modals.
 const exitProfileModal = editProfileModal.querySelector(".modal__close-btn");
-const exitPostModal = addPostBtn.querySelector(".modal__close-btn");
+const exitPostModal = addPostModal.querySelector(".modal__close-btn");
 
 // Adding Interactivity Below:
+// Open Modals
 editProfileBtn.addEventListener("click", () =>
-  console.log("Edit Profile Button has been pressed!")
+  editProfileModal.classList.add("modal_is-opened")
 );
 addPostBtn.addEventListener("click", () =>
-  console.log("Add Button has been pressed!")
+  addPostModal.classList.add("modal_is-opened")
+);
+
+// Close Modals
+exitProfileModal.addEventListener("click", () =>
+  editProfileModal.classList.remove("modal_is-opened")
+);
+
+exitPostModal.addEventListener("click", () =>
+  addPostModal.classList.remove("modal_is-opened")
 );
