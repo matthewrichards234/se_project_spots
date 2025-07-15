@@ -70,6 +70,7 @@
   border-radius: 8px;
   margin-bottom: 32px;
   border: solid #21212166 1px;
+  box-sizing: border-box;
 }
 
 .modal__input::placeholder {
@@ -100,6 +101,7 @@
 
   .modal__container {
     font-size: 16px;
+    padding: 12px;
   }
 
   .modal__submit-btn {
