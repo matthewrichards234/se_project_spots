@@ -99,6 +99,11 @@
     font-size: 16px;
   }
 
+  .modal__close-btn {
+    top: 12px;
+    right: 12px;
+  }
+
   .modal__container {
     font-size: 16px;
     padding: 12px;
