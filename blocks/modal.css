@@ -91,12 +91,12 @@
 }
 
 @media screen and (max-width: 627px) {
-  .modal__label {
-    font-size: 20px;
+  .modal__title {
+    padding-top: 12px;
   }
 
   .modal__label {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .modal__close-btn {
