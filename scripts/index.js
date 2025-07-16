@@ -8,27 +8,27 @@
 const initialCards = [
   {
     name: "Object 1",
-    link: "../imagesalan-king-KZv7w34tluA-unsplash-min.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
   {
     name: "Object 2",
-    link: "../imagesdanny-greenberg-KNkHfs1JZh8-unsplash-min.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
   },
   {
     name: "Object 3",
-    link: "../images\forlll-de-rad-L7_U32YYN24-unsplash-min.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
   },
   {
     name: "Object 4",
-    link: "../imagesslava-auchynnikau-3wnG56iHn2g-unsplash-min.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
   },
   {
     name: "Object 5",
-    link: "../imagesslava-auchynnikau-GHbwG9FfIOY-unsplash-min.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
   },
   {
     name: "Object 6",
-    link: "../imageswillian-justen-de-vasconcellos-orTe203D3os-unsplash-min.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
 
