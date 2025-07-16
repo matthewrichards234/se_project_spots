@@ -39,7 +39,6 @@ const addPostModal = document.querySelector("#new-post-modal");
 const exitProfileModal = editProfileModal.querySelector(".modal__close-btn");
 const exitPostModal = addPostModal.querySelector(".modal__close-btn");
 
-// Filling the form fields when opening the modal.
 // Added an ID element to h1 profile__name.
 // Added an ID element to p profile__description.
 const profileNameEl = document.querySelector("#profile-name");
@@ -51,6 +50,7 @@ const inputDescription = document.querySelector("#profile-description-input");
 // Open Modals
 editProfileBtn.addEventListener("click", () => {
   editProfileModal.classList.add("modal_is-opened");
+  // Filling the form fields when opening the modal.
   inputName.value = profileNameEl.textContent;
   inputDescription.value = profileDescriptionEl.textContent.trim();
 });

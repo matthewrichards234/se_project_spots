@@ -17,6 +17,7 @@
 }
 
 .modal__container {
+  box-sizing: border-box;
   max-width: 730px;
   width: 100%;
   border: 8px;
@@ -24,7 +25,6 @@
   border-radius: 8px;
   padding: 32px 50px;
   position: relative;
-  font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 20px;
@@ -81,10 +81,7 @@
 .modal__submit-btn {
   max-width: 156px;
   cursor: pointer;
-  margin-right: auto;
-  margin-top: auto;
   padding: 18px 32px 18px 32px;
-  height: 52px;
   border-radius: 8px;
   border: none;
   background-color: #212121;
