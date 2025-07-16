@@ -1,10 +1,4 @@
 // Looping Through an Array of Objects
-
-/* To - Do :
-1. Get 6 images.
-2. Compress them.
-3. Add them to images folder.
-4. Link them via relative path */
 const initialCards = [
   {
     name: "Object 1",
@@ -45,11 +39,22 @@ const addPostModal = document.querySelector("#new-post-modal");
 const exitProfileModal = editProfileModal.querySelector(".modal__close-btn");
 const exitPostModal = addPostModal.querySelector(".modal__close-btn");
 
+// Filling the form fields when opening the modal.
+// Added an ID element to h1 profile__name.
+// Added an ID element to p profile__description.
+const profileNameEl = document.querySelector("#profile-name");
+const profileDescriptionEl = document.querySelector("#profile-description");
+const inputName = document.querySelector("#profile-name-input");
+const inputDescription = document.querySelector("#profile-description-input");
+
 // Adding Interactivity Below:
 // Open Modals
-editProfileBtn.addEventListener("click", () =>
-  editProfileModal.classList.add("modal_is-opened")
-);
+editProfileBtn.addEventListener("click", () => {
+  editProfileModal.classList.add("modal_is-opened");
+  inputName.value = profileNameEl.textContent;
+  inputDescription.value = profileDescriptionEl.textContent.trim();
+});
+
 addPostBtn.addEventListener("click", () =>
   addPostModal.classList.add("modal_is-opened")
 );
