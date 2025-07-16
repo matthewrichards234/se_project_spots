@@ -8,27 +8,27 @@
 const initialCards = [
   {
     name: "Object 1",
-    link: "../images\tsuyoshi-kozu-9luf51j0R-0-unsplash-min  (1).jpg",
-  },
-  {
-    name: "Object 2",
-    link: "../images\tsuyoshi-kozu-9luf51j0R-0-unsplash-min  (2).jpg",
-  },
-  {
-    name: "Object 3",
-    link: "../images\tsuyoshi-kozu-9luf51j0R-0-unsplash-min  (3).jpg",
-  },
-  {
-    name: "Object 4",
     link: "../imagesalan-king-KZv7w34tluA-unsplash-min.jpg",
   },
   {
+    name: "Object 2",
+    link: "../imagesdanny-greenberg-KNkHfs1JZh8-unsplash-min.jpg",
+  },
+  {
+    name: "Object 3",
+    link: "../images\forlll-de-rad-L7_U32YYN24-unsplash-min.jpg",
+  },
+  {
+    name: "Object 4",
+    link: "../imagesslava-auchynnikau-3wnG56iHn2g-unsplash-min.jpg",
+  },
+  {
     name: "Object 5",
-    link: "../images\tsuyoshi-kozu-9luf51j0R-0-unsplash-min  (5).jpg",
+    link: "../imagesslava-auchynnikau-GHbwG9FfIOY-unsplash-min.jpg",
   },
   {
     name: "Object 6",
-    link: "../images\tsuyoshi-kozu-9luf51j0R-0-unsplash-min  (6).jpg",
+    link: "../imageswillian-justen-de-vasconcellos-orTe203D3os-unsplash-min.jpg",
   },
 ];
 
