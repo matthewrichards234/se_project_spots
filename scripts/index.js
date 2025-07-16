@@ -20,7 +20,7 @@ const initialCards = [
   },
   {
     name: "Object 4",
-    link: "../images\tsuyoshi-kozu-9luf51j0R-0-unsplash-min  (4).jpg",
+    link: "../imagesalan-king-KZv7w34tluA-unsplash-min.jpg",
   },
   {
     name: "Object 5",
