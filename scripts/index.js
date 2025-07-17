@@ -39,12 +39,19 @@ const addPostModal = document.querySelector("#new-post-modal");
 const exitProfileModal = editProfileModal.querySelector(".modal__close-btn");
 const exitPostModal = addPostModal.querySelector(".modal__close-btn");
 
+// Save Buttons selected on their respective Modals.
+// Note: I did not use these for form submission... Maybe I can use them next stage?
+const saveProfileBtn = editProfileBtn.querySelector(".modal__submit-btn");
+const savePostBtn = addPostModal.querySelector(".modal__submit-btn");
+
 // Added an ID element to h1 profile__name.
 // Added an ID element to p profile__description.
 const profileNameEl = document.querySelector("#profile-name");
 const profileDescriptionEl = document.querySelector("#profile-description");
 const inputName = document.querySelector("#profile-name-input");
 const inputDescription = document.querySelector("#profile-description-input");
+const inputCardLink = document.querySelector("#image-link-input");
+const inputCardTitle = document.querySelector("#image-caption-input");
 
 // Adding Interactivity Below:
 // Open Modals
@@ -71,3 +78,32 @@ exitPostModal.addEventListener("click", () =>
 initialCards.forEach(function (item) {
   console.log(item.name);
 });
+
+function handleProfileFormSubmit(evt) {
+  // Prevent default browser behavior.
+  evt.preventDefault();
+  // Get the values of each form field from the value property of the corresponding input element.
+  // Insert these new values into the textContent property of the corresponding profile elements.
+  profileNameEl.textContent = inputName.value;
+  profileDescriptionEl.textContent = inputDescription.value;
+
+  // Close the modal.
+  editProfileModal.classList.remove("modal_is-opened");
+}
+// Set the submit listener.
+editProfileModal.addEventListener("submit", handleProfileFormSubmit);
+
+function handleAddCardSubmit(evt) {
+  // Prevent default browser behavior.
+  evt.preventDefault();
+  // Log both input values to the console.
+  console.log(inputCardLink.value);
+  console.log(inputCardTitle.value);
+  // Close the modal.
+  addPostModal.classList.remove("modal_is-opened");
+}
+
+// Create the submit listener.
+addPostModal.addEventListener("submit", handleAddCardSubmit);
+
+// Note: Change all words "Post" to "Card" for readability later?
