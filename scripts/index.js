@@ -53,27 +53,30 @@ const inputDescription = document.querySelector("#profile-description-input");
 const inputCardLink = document.querySelector("#image-link-input");
 const inputCardTitle = document.querySelector("#image-caption-input");
 
+// Declare openModal & closeModal functions
+const openModal = function (modal) {
+  modal.classList.add("modal_is-opened");
+};
+
+const closeModal = function (modal) {
+  modal.classList.remove("modal_is-opened");
+};
+
 // Adding Interactivity Below:
 // Open Modals
 editProfileBtn.addEventListener("click", () => {
-  editProfileModal.classList.add("modal_is-opened");
+  openModal(editProfileModal);
   // Filling the form fields when opening the modal.
   inputName.value = profileNameEl.textContent;
   inputDescription.value = profileDescriptionEl.textContent.trim();
 });
 
-addPostBtn.addEventListener("click", () =>
-  addPostModal.classList.add("modal_is-opened")
-);
+addPostBtn.addEventListener("click", () => openModal(addPostModal));
 
 // Close Modals
-exitProfileModal.addEventListener("click", () =>
-  editProfileModal.classList.remove("modal_is-opened")
-);
+exitProfileModal.addEventListener("click", () => closeModal(editProfileModal));
 
-exitPostModal.addEventListener("click", () =>
-  addPostModal.classList.remove("modal_is-opened")
-);
+exitPostModal.addEventListener("click", () => closeModal(addPostModal));
 
 initialCards.forEach(function (item) {
   console.log(item.name);
@@ -88,7 +91,7 @@ function handleProfileFormSubmit(evt) {
   profileDescriptionEl.textContent = inputDescription.value;
 
   // Close the modal.
-  editProfileModal.classList.remove("modal_is-opened");
+  closeModal(editProfileModal);
 }
 // Set the submit listener.
 editProfileModal.addEventListener("submit", handleProfileFormSubmit);
@@ -100,7 +103,7 @@ function handleAddCardSubmit(evt) {
   console.log(inputCardLink.value);
   console.log(inputCardTitle.value);
   // Close the modal.
-  addPostModal.classList.remove("modal_is-opened");
+  closeModal("modal_is-opened");
 }
 
 // Create the submit listener.
