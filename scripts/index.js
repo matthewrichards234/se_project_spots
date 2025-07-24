@@ -55,11 +55,11 @@ const inputCardTitle = document.querySelector("#image-caption-input");
 
 // Select Template.
 const cardTemplate = document.querySelector("#template");
-const cardLi = cardTemplate.querySelector(".card");
+const cardList = document.querySelector(".cards__container");
 
 // Get Card Element Function
 const getCardElement = function (data) {
-  const cardElement = cardTemplate.cloneNode(true);
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__title");
   const cardImg = cardElement.querySelector(".card__image");
 
@@ -70,7 +70,6 @@ const getCardElement = function (data) {
   return cardElement;
 };
 
-// Declare openModal & closeModal functions
 const openModal = function (modal) {
   modal.classList.add("modal_is-opened");
 };
@@ -79,8 +78,6 @@ const closeModal = function (modal) {
   modal.classList.remove("modal_is-opened");
 };
 
-// Adding Interactivity Below:
-// Open Modals
 editProfileBtn.addEventListener("click", () => {
   openModal(editProfileModal);
   // Filling the form fields when opening the modal.
@@ -97,7 +94,7 @@ exitPostModal.addEventListener("click", () => closeModal(addPostModal));
 
 initialCards.forEach(function (item) {
   const cardElement = getCardElement(item);
-  cardTemplate.prepend(cardElement);
+  cardList.prepend(cardElement);
 });
 
 function handleProfileFormSubmit(evt) {
@@ -123,6 +120,8 @@ function handleAddCardSubmit(evt) {
   const newCard = getCardElement(cardData);
   cardLi.prepend(newCard);
   closeModal("modal_is-opened");
+  inputCardLink.value = "";
+  inputCardTitle.value = "";
 }
 
 // Create the submit listener.
