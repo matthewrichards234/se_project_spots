@@ -53,6 +53,23 @@ const inputDescription = document.querySelector("#profile-description-input");
 const inputCardLink = document.querySelector("#image-link-input");
 const inputCardTitle = document.querySelector("#image-caption-input");
 
+// Select Template.
+const cardTemplate = document.querySelector("#template");
+const cardLi = cardTemplate.querySelector(".card");
+
+// Get Card Element Function
+const getCardElement = function (data) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitle = cardElement.querySelector(".card__title");
+  const cardImg = cardElement.querySelector(".card__image");
+
+  cardImg.src = data.link;
+  cardImg.alt = data.name;
+  cardTitle.textContent = data.name;
+
+  return cardElement;
+};
+
 // Declare openModal & closeModal functions
 const openModal = function (modal) {
   modal.classList.add("modal_is-opened");
@@ -79,7 +96,8 @@ exitProfileModal.addEventListener("click", () => closeModal(editProfileModal));
 exitPostModal.addEventListener("click", () => closeModal(addPostModal));
 
 initialCards.forEach(function (item) {
-  console.log(item.name);
+  const cardElement = getCardElement(item);
+  cardTemplate.prepend(cardElement);
 });
 
 function handleProfileFormSubmit(evt) {
@@ -97,12 +115,13 @@ function handleProfileFormSubmit(evt) {
 editProfileModal.addEventListener("submit", handleProfileFormSubmit);
 
 function handleAddCardSubmit(evt) {
-  // Prevent default browser behavior.
   evt.preventDefault();
-  // Log both input values to the console.
-  console.log(inputCardLink.value);
-  console.log(inputCardTitle.value);
-  // Close the modal.
+  const cardData = {
+    link: inputCardLink.value,
+    title: inputCardTitle.value,
+  };
+  const newCard = getCardElement(cardData);
+  cardLi.prepend(newCard);
   closeModal("modal_is-opened");
 }
 
