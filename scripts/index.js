@@ -1,4 +1,3 @@
-// Looping Through an Array of Objects
 const initialCards = [
   {
     name: "Object 1",
@@ -26,16 +25,10 @@ const initialCards = [
   },
 ];
 
-// Edit Profile & Add Post buttons selected.
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const addPostBtn = document.querySelector(".profile__add-btn");
-
-// Both Modals selected.
-// NOTE: I gave ID's of "edit-profile-modal" and "new-post-modal" to each Modal respectively.
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const addPostModal = document.querySelector("#new-post-modal");
-
-// Exit Buttons selected on their respective Modals.
 const exitProfileModal = editProfileModal.querySelector(".modal__close-btn");
 const exitPostModal = addPostModal.querySelector(".modal__close-btn");
 
@@ -44,8 +37,6 @@ const exitPostModal = addPostModal.querySelector(".modal__close-btn");
 const saveProfileBtn = editProfileBtn.querySelector(".modal__submit-btn");
 const savePostBtn = addPostModal.querySelector(".modal__submit-btn");
 
-// Added an ID element to h1 profile__name.
-// Added an ID element to p profile__description.
 const profileNameEl = document.querySelector("#profile-name");
 const profileDescriptionEl = document.querySelector("#profile-description");
 const inputName = document.querySelector("#profile-name-input");
@@ -53,9 +44,8 @@ const inputDescription = document.querySelector("#profile-description-input");
 const inputCardLink = document.querySelector("#image-link-input");
 const inputCardTitle = document.querySelector("#image-caption-input");
 
-// Select Template.
 const cardTemplate = document.querySelector("#template");
-const cardList = document.querySelector(".cards__container");
+const cardList = cardTemplate.content.querySelector(".cards__list");
 
 // Get Card Element Function
 const getCardElement = function (data) {
@@ -87,7 +77,6 @@ editProfileBtn.addEventListener("click", () => {
 
 addPostBtn.addEventListener("click", () => openModal(addPostModal));
 
-// Close Modals
 exitProfileModal.addEventListener("click", () => closeModal(editProfileModal));
 
 exitPostModal.addEventListener("click", () => closeModal(addPostModal));
@@ -98,17 +87,14 @@ initialCards.forEach(function (item) {
 });
 
 function handleProfileFormSubmit(evt) {
-  // Prevent default browser behavior.
   evt.preventDefault();
   // Get the values of each form field from the value property of the corresponding input element.
   // Insert these new values into the textContent property of the corresponding profile elements.
   profileNameEl.textContent = inputName.value;
   profileDescriptionEl.textContent = inputDescription.value;
 
-  // Close the modal.
   closeModal(editProfileModal);
 }
-// Set the submit listener.
 editProfileModal.addEventListener("submit", handleProfileFormSubmit);
 
 function handleAddCardSubmit(evt) {
@@ -118,13 +104,12 @@ function handleAddCardSubmit(evt) {
     title: inputCardTitle.value,
   };
   const newCard = getCardElement(cardData);
-  cardLi.prepend(newCard);
+  cardList.prepend(newCard);
   closeModal("modal_is-opened");
   inputCardLink.value = "";
   inputCardTitle.value = "";
 }
 
-// Create the submit listener.
 addPostModal.addEventListener("submit", handleAddCardSubmit);
 
 // Note: Change all words "Post" to "Card" for readability later?
