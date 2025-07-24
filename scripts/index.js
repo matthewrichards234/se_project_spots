@@ -31,6 +31,8 @@ const editProfileModal = document.querySelector("#edit-profile-modal");
 const addPostModal = document.querySelector("#new-post-modal");
 const exitProfileModal = editProfileModal.querySelector(".modal__close-btn");
 const exitPostModal = addPostModal.querySelector(".modal__close-btn");
+const editModalForm = editProfileModal.querySelector(".modal__form");
+const addModalForm = addPostModal.querySelector(".modal__form");
 
 // Save Buttons selected on their respective Modals.
 // Note: I did not use these for form submission... Maybe I can use them next stage?
@@ -45,11 +47,13 @@ const inputCardLink = document.querySelector("#image-link-input");
 const inputCardTitle = document.querySelector("#image-caption-input");
 
 const cardTemplate = document.querySelector("#template");
-const cardList = cardTemplate.content.querySelector(".cards__list");
+const cardList = document.querySelector(".cards__list");
 
 // Get Card Element Function
 const getCardElement = function (data) {
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardElement = cardTemplate.content
+    .querySelector(".card")
+    .cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__title");
   const cardImg = cardElement.querySelector(".card__image");
 
@@ -95,21 +99,20 @@ function handleProfileFormSubmit(evt) {
 
   closeModal(editProfileModal);
 }
-editProfileModal.addEventListener("submit", handleProfileFormSubmit);
+editModalForm.addEventListener("submit", handleProfileFormSubmit);
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const cardData = {
     link: inputCardLink.value,
-    title: inputCardTitle.value,
+    name: inputCardTitle.value,
   };
   const newCard = getCardElement(cardData);
   cardList.prepend(newCard);
-  closeModal("modal_is-opened");
-  inputCardLink.value = "";
-  inputCardTitle.value = "";
+  closeModal(addPostModal);
+  addModalForm.reset();
 }
 
-addPostModal.addEventListener("submit", handleAddCardSubmit);
+addModalForm.addEventListener("submit", handleAddCardSubmit);
 
 // Note: Change all words "Post" to "Card" for readability later?
