@@ -61,7 +61,16 @@ const getCardElement = function (data) {
   cardImg.alt = data.name;
   cardTitle.textContent = data.name;
 
+  const cardLikeBtn = cardElement.querySelector(".card__like-btn");
+  cardLikeBtn.addEventListener("click", function () {
+    toggleLikeBtn(cardLikeBtn);
+  });
+
   return cardElement;
+};
+
+const toggleLikeBtn = function (btn) {
+  btn.classList.toggle("card__like-btn_clicked");
 };
 
 const openModal = function (modal) {
