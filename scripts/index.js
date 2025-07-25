@@ -66,6 +66,11 @@ const getCardElement = function (data) {
     toggleLikeBtn(cardLikeBtn);
   });
 
+  const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
+  cardDeleteBtn.addEventListener("click", function () {
+    cardElement.remove();
+  });
+
   return cardElement;
 };
 
