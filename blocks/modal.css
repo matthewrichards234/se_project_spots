@@ -37,6 +37,33 @@
   color: #212121;
 }
 
+.modal__image-container {
+  position: relative;
+}
+
+.modal__image {
+  max-width: 80vw;
+  max-height: 80vh;
+  width: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
+}
+
+.modal__caption {
+  font-family: Poppins;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: 0%;
+  color: #ffffff;
+  background-color: #212121;
+  padding: 4px 8px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
 .modal__title {
   margin: 0 0 32px;
 }
@@ -56,6 +83,12 @@
 .modal__close-btn:hover {
   background-image: url(../images/Property\ 1=Variant2.svg);
   background-color: transparent;
+}
+
+.modal__close-btn_preview {
+  background-image: url(../images/previewCloseBtn.svg);
+  top: 0;
+  right: -52.5px;
 }
 
 .modal__form {

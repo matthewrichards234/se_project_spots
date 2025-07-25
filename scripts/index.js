@@ -23,6 +23,10 @@ const initialCards = [
     name: "Object 6",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
+  {
+    name: "Golden Gate Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
 ];
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
@@ -33,6 +37,8 @@ const exitProfileModal = editProfileModal.querySelector(".modal__close-btn");
 const exitPostModal = addPostModal.querySelector(".modal__close-btn");
 const editModalForm = editProfileModal.querySelector(".modal__form");
 const addModalForm = addPostModal.querySelector(".modal__form");
+const modalProview = document.querySelector("#preview-modal");
+const exitModalPreiew = modalProview.querySelector(".modal__close-btn");
 
 // Save Buttons selected on their respective Modals.
 // Note: I did not use these for form submission... Maybe I can use them next stage?
