@@ -37,8 +37,11 @@ const exitProfileModal = editProfileModal.querySelector(".modal__close-btn");
 const exitPostModal = addPostModal.querySelector(".modal__close-btn");
 const editModalForm = editProfileModal.querySelector(".modal__form");
 const addModalForm = addPostModal.querySelector(".modal__form");
+
 const modalProview = document.querySelector("#preview-modal");
 const exitModalPreiew = modalProview.querySelector(".modal__close-btn");
+const previewImageEl = modalProview.querySelector(".modal__image");
+const previewCaptionEl = modalProview.querySelector(".modal__caption");
 
 // Save Buttons selected on their respective Modals.
 // Note: I did not use these for form submission... Maybe I can use them next stage?
@@ -77,6 +80,13 @@ const getCardElement = function (data) {
     cardElement.remove();
   });
 
+  cardImg.addEventListener("click", function () {
+    previewCaptionEl.textContent = data.name;
+    previewImageEl.src = data.link;
+    previewImageEl.alt = data.name;
+    openModal(modalProview);
+  });
+
   return cardElement;
 };
 
@@ -104,6 +114,8 @@ addPostBtn.addEventListener("click", () => openModal(addPostModal));
 exitProfileModal.addEventListener("click", () => closeModal(editProfileModal));
 
 exitPostModal.addEventListener("click", () => closeModal(addPostModal));
+
+exitModalPreiew.addEventListener("click", () => closeModal(modalProview));
 
 initialCards.forEach(function (item) {
   const cardElement = getCardElement(item);
