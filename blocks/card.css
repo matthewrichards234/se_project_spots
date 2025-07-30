@@ -60,15 +60,18 @@
   right: 10px;
   width: 32px;
   height: 32px;
+  background-size: 16px 16px;
   cursor: pointer;
   border: none;
-  background-color: transparent;
-  /* z-index: 1; */
-  background-image: url(../images/deleteDf.svg);
+  background-image: url(../images/trashcan_btn.svg);
+  background-repeat: no-repeat;
+  background-color: #0000004d;
+  border-radius: 50%;
+  background-position: center;
 }
 
 .card__delete-btn:hover {
-  background-image: url(../images/deleteHv.svg);
+  background-color: #ff6565;
 }
 
 @media screen and (max-width: 627px) {
