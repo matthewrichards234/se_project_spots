@@ -149,7 +149,7 @@
 /* Responsive */
 @media screen and (max-width: 450px) {
   .modal__image {
-    max-width: 100vw;
+    max-width: 288px;
   }
 }
 
