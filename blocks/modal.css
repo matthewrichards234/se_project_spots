@@ -153,6 +153,11 @@
   padding: 0;
   margin-bottom: 32px;
   display: block;
+  visibility: hidden;
+}
+
+.modal__error_visible {
+  visibility: visible;
 }
 
 /* Responsive */

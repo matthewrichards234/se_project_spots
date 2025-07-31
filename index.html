@@ -80,7 +80,7 @@
             <label for="profile-name-input" class="modal__label">Name</label>
             <input
               type="text"
-              class="modal__input"
+              class="modal__input modal__input_type_error"
               id="profile-name-input"
               name="name"
               placeholder="Enter your name"
@@ -88,13 +88,13 @@
               minlength="2"
               maxlength="40"
             />
-            <span class="modal__error modal__error-hidden">Test</span>
+            <span class="modal__error"></span>
             <label for="profile-description-input" class="modal__label"
               >Description</label
             >
             <input
               type="text"
-              class="modal__input"
+              class="modal__input modal__input_type_error"
               id="profile-description-input"
               name="description"
               placeholder="Describe yourself"
@@ -102,8 +102,14 @@
               minlength="2"
               maxlength="200"
             />
-            <span class="modal__error modal__error-hidden">Test</span>
-            <button type="submit" class="modal__submit-btn">Save</button>
+            <span class="modal__error"></span>
+            <!-- Added modal__submit-btn_disabled Modifier to both submit buttons -->
+            <button
+              type="submit"
+              class="modal__submit-btn modal__submit-btn_disabled"
+            >
+              Save
+            </button>
           </form>
         </div>
       </div>
@@ -120,20 +126,20 @@
             >
             <input
               type="url"
-              class="modal__input"
+              class="modal__input modal__input_type_error"
               id="image-link-input"
               name="image-link"
               placeholder="Paste a link to the picture"
               required
             />
-            <span class="modal__error modal__error-hidden">Test</span>
+            <span class="modal__error"></span>
 
             <label for="image-caption-input" class="modal__label"
               >Caption</label
             >
             <input
               type="text"
-              class="modal__input"
+              class="modal__input modal__input_type_error"
               id="image-caption-input"
               name="image-caption"
               placeholder="Type your caption"
@@ -141,9 +147,14 @@
               minlength="2"
               maxlength="30"
             />
-            <span class="modal__error modal__error-hidden">Test</span>
+            <span class="modal__error"></span>
 
-            <button type="submit" class="modal__submit-btn">Save</button>
+            <button
+              type="submit"
+              class="modal__submit-btn modal__submit-btn_disabled"
+            >
+              Save
+            </button>
           </form>
         </div>
       </div>
