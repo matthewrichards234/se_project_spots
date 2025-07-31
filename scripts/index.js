@@ -43,8 +43,6 @@ const exitModalPreiew = modalProview.querySelector(".modal__close-btn");
 const previewImageEl = modalProview.querySelector(".modal__image");
 const previewCaptionEl = modalProview.querySelector(".modal__caption");
 
-// Save Buttons selected on their respective Modals.
-// Note: I did not use these for form submission... Maybe I can use them next stage?
 const saveProfileBtn = editProfileBtn.querySelector(".modal__submit-btn");
 const savePostBtn = addPostModal.querySelector(".modal__submit-btn");
 
@@ -58,7 +56,6 @@ const inputCardTitle = document.querySelector("#image-caption-input");
 const cardTemplate = document.querySelector("#template");
 const cardList = document.querySelector(".cards__list");
 
-// Get Card Element Function
 const getCardElement = function (data) {
   const cardElement = cardTemplate.content
     .querySelector(".card")
@@ -147,4 +144,11 @@ function handleAddCardSubmit(evt) {
 
 addModalForm.addEventListener("submit", handleAddCardSubmit);
 
-// Note: Change all words "Post" to "Card" for readability later?
+// Code a feature that allows the users to close the modal by clicking on the overlay,
+// i.e. anywhere outside the modal’s borders:
+const closeModalViaEvent = (modal) => {
+  // 1. Get the modal that is open... if modal is open:
+  // 2. add an event listener on click and on keypress esc.
+  // 3. How do i determine what constitutes "outside" of a modal? It cannot be static I know that much.
+  // if click not on modal container, close modal.
+};
