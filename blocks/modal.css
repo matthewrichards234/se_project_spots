@@ -127,7 +127,7 @@
   width: 100%;
   padding: 16px 0 16px 12px;
   border-radius: 8px;
-  margin-bottom: 32px;
+  margin-bottom: 8px;
   border: solid #21212166 1px;
   box-sizing: border-box;
 }
@@ -144,6 +144,15 @@
   border: none;
   background-color: #212121;
   color: #fcf5e5;
+}
+
+.modal__error {
+  color: rgba(255, 0, 0, 0.7);
+  font-size: 16px;
+  line-height: 1.1;
+  padding: 0;
+  margin-bottom: 32px;
+  display: block;
 }
 
 /* Responsive */
