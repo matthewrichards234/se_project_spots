@@ -150,5 +150,36 @@ const closeModalViaEvent = (modal) => {
   // 1. Get the modal that is open... if modal is open:
   // 2. add an event listener on click and on keypress esc.
   // 3. How do i determine what constitutes "outside" of a modal? It cannot be static I know that much.
-  // if click not on modal container, close modal.
+  // if click not on modal__container, close modal.
+  const modalContainer = document.querySelector(".modal__container");
+  if (modal.classList.contains("modal_is-opened")) {
+    modalContainer.addEventListener("click", (event) => {
+      if (event.target !== modalContainer) {
+        closeModal(modal);
+      }
+    });
+  }
 };
+
+const closeModalEsc = (modal) => {
+  const modalContainer = document.querySelector(".modal__container");
+  if (modal.classList.contains("modal_is-opened")) {
+  }
+};
+const closeModalClick = (modal) => {};
+
+editProfileModal.addEventListener("click", () => {
+  closeModalClick();
+});
+
+editProfileModal.addEventListener("keydown", () => {
+  closeModalEsc();
+});
+
+addPostModal.addEventListener("click", () => {
+  closeModalClick();
+});
+
+addPostModal.addEventListener("keydown", () => {
+  closeModalEsc();
+});

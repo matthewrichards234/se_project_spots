@@ -25,7 +25,7 @@ const setEventListeners = (form, settings) => {
 };
 
 const checkValidity = (input) => {
-  const errorMessage = input.nextElementSibling; // Ask Octavio about this.
+  const errorMessage = document.querySelector(`#${input.id}-error`);
   if (!input.validity.valid) {
     errorMessage.classList.add("modal__error_visible");
     errorMessage.textContent = input.validationMessage;

@@ -88,7 +88,7 @@
               minlength="2"
               maxlength="40"
             />
-            <span class="modal__error" id="profile-name-error"></span>
+            <span class="modal__error" id="profile-name-input-error"></span>
             <label for="profile-description-input" class="modal__label"
               >Description</label
             >
@@ -102,7 +102,10 @@
               minlength="2"
               maxlength="200"
             />
-            <span class="modal__error" id="profile-description-error"></span>
+            <span
+              class="modal__error"
+              id="profile-description-input-error"
+            ></span>
             <!-- Added modal__submit-btn_disabled Modifier to both submit buttons -->
             <button
               type="submit"
@@ -132,7 +135,7 @@
               placeholder="Paste a link to the picture"
               required
             />
-            <span class="modal__error" id="image-url-error"></span>
+            <span class="modal__error" id="image-link-input-error"></span>
 
             <label for="image-caption-input" class="modal__label"
               >Caption</label
@@ -147,7 +150,7 @@
               minlength="2"
               maxlength="30"
             />
-            <span class="modal__error" id="image-caption-error"></span>
+            <span class="modal__error" id="image-caption-input-error"></span>
 
             <button
               type="submit"
@@ -161,7 +164,6 @@
       <div class="modal modal_type_preview" id="preview-modal">
         <div class="modal__image-container">
           <img src="#" alt="" class="modal__image" />
-          <!-- is the button proper BEM? -->
           <button
             type="button"
             class="modal__close-btn modal__close-btn_preview"
@@ -171,8 +173,6 @@
       </div>
     </div>
     <script src="./scripts/index.js"></script>
-    <!-- Linking to validation.js in the meantime for testing
-     7/31/25 - 10:30 AM -->
     <script src="./scripts/validation.js"></script>
   </body>
 </html>
