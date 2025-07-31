@@ -152,6 +152,9 @@
               id="profile-name-input"
               name="name"
               placeholder="Enter your name"
+              required
+              minlength="2"
+              maxlength="40"
             />
             <label for="profile-description-input" class="modal__label"
               >Description</label
@@ -162,6 +165,9 @@
               id="profile-description-input"
               name="description"
               placeholder="Describe yourself"
+              required
+              minlength="2"
+              maxlength="200"
             />
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
@@ -184,6 +190,7 @@
               id="image-link-input"
               name="image-link"
               placeholder="Paste a link to the picture"
+              required
             />
 
             <label for="image-caption-input" class="modal__label"
@@ -195,6 +202,7 @@
               id="image-caption-input"
               name="image-caption"
               placeholder="Type your caption"
+              required
             />
 
             <button type="submit" class="modal__submit-btn">Save</button>
