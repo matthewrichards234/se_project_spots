@@ -72,9 +72,11 @@ const getCardElement = function (data) {
   const cardElement = cardTemplate.content
     .querySelector(".card")
     .cloneNode(true);
+  // Get title & img from cloned node.
   const cardTitle = cardElement.querySelector(".card__title");
   const cardImg = cardElement.querySelector(".card__image");
 
+  // Set approprite attributes to cloned node via Cards object.
   cardImg.src = data.link;
   cardImg.alt = data.name;
   cardTitle.textContent = data.name;
