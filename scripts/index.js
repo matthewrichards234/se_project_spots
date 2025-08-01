@@ -46,10 +46,10 @@ const editModalForm = editProfileModal.querySelector(".modal__form");
 const addModalForm = addPostModal.querySelector(".modal__form");
 
 // Preview Modals
-const modalProview = document.querySelector("#preview-modal");
-const exitModalPreiew = modalProview.querySelector(".modal__close-btn");
-const previewImageEl = modalProview.querySelector(".modal__image");
-const previewCaptionEl = modalProview.querySelector(".modal__caption");
+const modalPreview = document.querySelector("#preview-modal");
+const exitModalPreiew = modalPreview.querySelector(".modal__close-btn");
+const previewImageEl = modalPreview.querySelector(".modal__image");
+const previewCaptionEl = modalPreview.querySelector(".modal__caption");
 
 // Submit Modal Buttons
 const saveProfileBtn = editProfileBtn.querySelector(".modal__submit-btn");
@@ -108,10 +108,6 @@ const toggleLikeBtn = function (btn) {
   btn.classList.toggle("card__like-btn_clicked");
 };
 
-const openModal = function (modal) {
-  modal.classList.add("modal_is-opened");
-};
-
 editProfileBtn.addEventListener("click", () => {
   openModal(editProfileModal);
   // Filling the form fields when opening the modal.
@@ -125,7 +121,7 @@ exitProfileModal.addEventListener("click", () => closeModal(editProfileModal));
 
 exitPostModal.addEventListener("click", () => closeModal(addPostModal));
 
-exitModalPreiew.addEventListener("click", () => closeModal(modalProview));
+exitModalPreiew.addEventListener("click", () => closeModal(modalPreview));
 
 initialCards.forEach(function (item) {
   const cardElement = getCardElement(item);
@@ -176,19 +172,30 @@ const closeModalViaEvent = (modal) => {
 
 const closeModal = function (modal) {
   modal.classList.remove("modal_is-opened");
+  document.removeEventListener("keydown", handleEscapeClose);
+  modal.removeEventListener("click", handleClickClose);
 };
 
-addPostModal.addEventListener("keydown", (evt) => {
-  if (
-    evt.key === "Escape" &&
-    addPostModal.classList.contains("modal_is-opened")
-  ) {
-    closeModal(addPostModal);
-  }
-});
+const openModal = function (modal) {
+  modal.classList.add("modal_is-opened");
+  document.addEventListener("keydown", handleEscapeClose);
+  modal.addEventListener("click", handleClickClose);
+};
 
-addPostModal.addEventListener("mousedown", (evt) => {
-  if (!modalContainer.contains(evt.target)) {
-    closeModal(addPostModal);
+// Add event listener on open modal, remove it on close modal.
+// Create a function that recieves an event and closes modal based on event.
+const handleEscapeClose = (event) => {
+  // Assume modal is open.
+  // We wont add event listener
+  const modal = document.querySelector(".modal_is-opened");
+  if (event.key === "Escape") {
+    closeModal(modal);
   }
-});
+};
+
+const handleClickClose = (event) => {
+  const modal = document.querySelector(".modal_is-opened");
+  if (event.target.classList.contains("modal_is-opened")) {
+    closeModal(modal);
+  }
+};
