@@ -31,10 +31,13 @@ const initialCards = [
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const addPostBtn = document.querySelector(".profile__add-btn");
+
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const addPostModal = document.querySelector("#new-post-modal");
+
 const exitProfileModal = editProfileModal.querySelector(".modal__close-btn");
 const exitPostModal = addPostModal.querySelector(".modal__close-btn");
+
 const editModalForm = editProfileModal.querySelector(".modal__form");
 const addModalForm = addPostModal.querySelector(".modal__form");
 
@@ -93,10 +96,6 @@ const toggleLikeBtn = function (btn) {
 
 const openModal = function (modal) {
   modal.classList.add("modal_is-opened");
-};
-
-const closeModal = function (modal) {
-  modal.classList.remove("modal_is-opened");
 };
 
 editProfileBtn.addEventListener("click", () => {
@@ -161,25 +160,21 @@ const closeModalViaEvent = (modal) => {
   }
 };
 
-const closeModalEsc = (modal) => {
-  const modalContainer = document.querySelector(".modal__container");
-  if (modal.classList.contains("modal_is-opened")) {
-  }
+const closeModal = function (modal) {
+  modal.classList.remove("modal_is-opened");
 };
-const closeModalClick = (modal) => {};
 
-editProfileModal.addEventListener("click", () => {
-  closeModalClick();
+addPostModal.addEventListener("keydown", (evt) => {
+  if (
+    evt.key === "Escape" &&
+    addPostModal.classList.contains("modal_is-opened")
+  ) {
+    closeModal(addPostModal);
+  }
 });
 
-editProfileModal.addEventListener("keydown", () => {
-  closeModalEsc();
-});
-
-addPostModal.addEventListener("click", () => {
-  closeModalClick();
-});
-
-addPostModal.addEventListener("keydown", () => {
-  closeModalEsc();
+addPostModal.addEventListener("mousedown", (evt) => {
+  if (!modalContainer.contains(evt.target)) {
+    closeModal(addPostModal);
+  }
 });
