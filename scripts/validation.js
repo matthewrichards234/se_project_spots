@@ -27,10 +27,10 @@ const setEventListeners = (form, settings) => {
 const checkValidity = (input) => {
   const errorMessage = document.querySelector(`#${input.id}-error`);
   if (!input.validity.valid) {
-    errorMessage.classList.add("modal__error_visible");
+    errorMessage.classList.add(settings.errorClass);
     errorMessage.textContent = input.validationMessage;
   } else {
-    errorMessage.classList.remove("modal__error_visible");
+    errorMessage.classList.remove(settings.errorClass);
     errorMessage.textContent = "";
   }
 };
