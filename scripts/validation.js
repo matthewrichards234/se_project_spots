@@ -19,8 +19,12 @@ const enableValidation = (settings) => {
 
 const setEventListeners = (form, settings) => {
   const inputs = form.querySelectorAll(settings.inputSelector);
+  const button = form.querySelector(settings.submitButtonSelector);
   inputs.forEach((inputEl) => {
-    inputEl.addEventListener("input", () => checkValidity(inputEl));
+    inputEl.addEventListener("input", function () {
+      checkValidity(inputEl);
+      toggleButtonState(inputs, button);
+    });
   });
 };
 
