@@ -35,4 +35,18 @@ const checkValidity = (input) => {
   }
 };
 
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(settings.inactiveButtonClass);
+  } else {
+    buttonElement.classList.remove(settings.inactiveButtonClass);
+  }
+};
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
 enableValidation(settings);
