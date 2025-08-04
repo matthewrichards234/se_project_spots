@@ -151,7 +151,8 @@
 }
 
 .modal__submit-btn_disabled {
-  background-color: rgba(33, 33, 33, 1);
+  background-color: rgba(33, 33, 33, 0.5);
+  cursor: not-allowed;
 }
 
 .modal__error {
