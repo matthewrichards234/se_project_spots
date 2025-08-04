@@ -48,7 +48,7 @@ const toggleButtonState = (inputList, buttonElement) => {
 };
 
 const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
+  return [...inputList].some((inputElement) => {
     return !inputElement.validity.valid;
   });
 };
