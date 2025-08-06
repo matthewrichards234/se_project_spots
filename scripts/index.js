@@ -146,9 +146,12 @@ function handleAddCardSubmit(evt) {
     name: inputCardTitle.value,
   };
   const newCard = getCardElement(cardData);
+  console.log(newCard);
   cardList.prepend(newCard);
   closeModal(addPostModal);
   addModalForm.reset();
+  // Prevents Submit button from being active after image is submitted & uploaded.
+  toggleButtonState(addModalForm, savePostBtn, settings);
 }
 
 addModalForm.addEventListener("submit", handleAddCardSubmit);
@@ -186,10 +189,12 @@ const openModal = function (modal) {
 // Create a function that recieves an event and closes modal based on event.
 const handleEscapeClose = (event) => {
   // Assume modal is open.
-  // We wont add event listener
   const modal = document.querySelector(".modal_is-opened");
   if (event.key === "Escape") {
     closeModal(modal);
+    if (modal === addPostModal) {
+      addModalForm.reset();
+    }
   }
 };
 
@@ -197,5 +202,8 @@ const handleClickClose = (event) => {
   const modal = document.querySelector(".modal_is-opened");
   if (event.target.classList.contains("modal_is-opened")) {
     closeModal(modal);
+    if (modal === addPostModal) {
+      addModalForm.reset();
+    }
   }
 };

@@ -17,6 +17,20 @@ const enableValidation = (settings) => {
   });
 };
 
+const hideInputError = (errorMessage) => {
+  errorMessage.classList.remove(settings.errorClass);
+  errorMessage.textContent = "";
+};
+
+const showInputError = (errorMessage, input) => {
+  errorMessage.classList.add(settings.errorClass);
+  errorMessage.textContent = input.validationMessage;
+};
+
+// Removes the error messages from all inputs.
+// Function is called when the Profile Modal is opened so it does not show error messages.
+const resetValidation = () => {};
+
 const setEventListeners = (form, settings) => {
   const inputs = form.querySelectorAll(settings.inputSelector);
   const button = form.querySelector(settings.submitButtonSelector);
@@ -31,11 +45,9 @@ const setEventListeners = (form, settings) => {
 const checkValidity = (input, settings) => {
   const errorMessage = document.querySelector(`#${input.id}-error`);
   if (!input.validity.valid) {
-    errorMessage.classList.add(settings.errorClass);
-    errorMessage.textContent = input.validationMessage;
+    showInputError(errorMessage, input);
   } else {
-    errorMessage.classList.remove(settings.errorClass);
-    errorMessage.textContent = "";
+    hideInputError(errorMessage);
   }
 };
 
