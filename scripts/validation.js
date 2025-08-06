@@ -17,19 +17,27 @@ const enableValidation = (settings) => {
   });
 };
 
-const hideInputError = (errorMessage) => {
+const hideInputError = (errorMessage, inputError) => {
   errorMessage.classList.remove(settings.errorClass);
+  // form.classList.remove(settings.inputErrorClass);
   errorMessage.textContent = "";
 };
 
 const showInputError = (errorMessage, input) => {
   errorMessage.classList.add(settings.errorClass);
+  // form.classList.add(settings.inputErrorClass);
   errorMessage.textContent = input.validationMessage;
 };
 
 // Removes the error messages from all inputs.
 // Function is called when the Profile Modal is opened so it does not show error messages.
-const resetValidation = () => {};
+const resetValidation = (profileModal, formInputs) => {
+  // 1. Check if modal is opened (assume modal is so in this function?)
+  // Let's assume the profile modal is already opened when writing this function...
+  // 2. forEach error message in form, reset its textContent.
+  // We need to get all inputs as an array.
+  formInputs.forEach((input) => {});
+};
 
 const setEventListeners = (form, settings) => {
   const inputs = form.querySelectorAll(settings.inputSelector);
