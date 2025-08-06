@@ -192,6 +192,7 @@ const handleEscapeClose = (event) => {
   const modal = document.querySelector(".modal_is-opened");
   if (event.key === "Escape") {
     closeModal(modal);
+    // reset addPostModal on escape key press.
     if (modal === addPostModal) {
       addModalForm.reset();
     }
@@ -202,6 +203,7 @@ const handleClickClose = (event) => {
   const modal = document.querySelector(".modal_is-opened");
   if (event.target.classList.contains("modal_is-opened")) {
     closeModal(modal);
+    // reset addPostModal on click away.
     if (modal === addPostModal) {
       addModalForm.reset();
     }
