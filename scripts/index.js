@@ -181,6 +181,7 @@ const closeModal = function (modal) {
 
 const openModal = function (modal) {
   modal.classList.add("modal_is-opened");
+  resetValidation(modal, settings);
   document.addEventListener("keydown", handleEscapeClose);
   modal.addEventListener("click", handleClickClose);
 };
