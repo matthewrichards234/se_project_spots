@@ -1,3 +1,5 @@
+import { enableValidation, settings } from "./validation.js";
+
 const initialCards = [
   {
     name: "Object 1",
@@ -210,3 +212,5 @@ const handleClickClose = (event) => {
     }
   }
 };
+
+enableValidation(settings);
