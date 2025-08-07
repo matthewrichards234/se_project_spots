@@ -17,7 +17,7 @@
     <div class="page">
       <header class="header">
         <img
-          src="<%=require('./images/Logo.svg')%>"
+          src="<%= require('./images/Logo.svg') %>"
           alt="Spots Logo"
           class="header__logo"
         />
@@ -25,7 +25,7 @@
       <main class="content">
         <section class="profile page__section">
           <img
-            src="./images/avatar.jpg"
+            src="<%= require('./images/avatar.jpg') %>"
             alt="Profile Avatar"
             class="profile__avatar"
           />
@@ -36,7 +36,7 @@
             </p>
             <button type="button" class="profile__edit-btn">
               <img
-                src="./images/pencil.svg"
+                src="<%= require('./images/pencil.svg')%>"
                 alt="Pencil icon"
                 class="profile__edit-btn-pencil"
               />
@@ -45,7 +45,7 @@
           </div>
           <button type="button" class="profile__add-btn">
             <img
-              src="./images/Group-26.svg"
+              src="<%= require('./images/plusIcon.svg')%>"
               alt="Plus icon"
               class="profile__edit-btn-pencil"
             />
@@ -58,7 +58,7 @@
               <li class="card">
                 <div class="card__image-container">
                   <img
-                    src="./images/1-photo-by-moritz-feldmann-from-pexels.jpg"
+                    src="<%= require('./images/1-photo-by-moritz-feldmann-from-pexels.jpg')%>"
                     alt="Val Thorens"
                     class="card__image"
                   />
@@ -110,7 +110,6 @@
               class="modal__error"
               id="profile-description-input-error"
             ></span>
-            <!-- Added modal__submit-btn_disabled Modifier to both submit buttons -->
             <button
               type="submit"
               class="modal__submit-btn modal__submit-btn_disabled"
@@ -176,7 +175,5 @@
         </div>
       </div>
     </div>
-    <!-- <script type="module" src="./scripts/index.js"></script>
-    <script src="./scripts/validation.js"></script> -->
   </body>
 </html>
