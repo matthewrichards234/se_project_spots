@@ -31,7 +31,7 @@ const showInputError = (errorMessage, input, settings) => {
 
 // Removes the error messages from all inputs.
 // Function is called when the Profile Modal is opened so it does not show error messages.
-const resetValidation = (formEl, settings) => {
+export const resetValidation = (formEl, settings) => {
   const inputList = Array.from(formEl.querySelectorAll(settings.inputSelector));
   inputList.forEach((input) => {
     const errorEl = formEl.querySelector(`#${input.id}-error`);

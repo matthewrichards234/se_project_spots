@@ -1,5 +1,9 @@
 import "./index.css";
-import { enableValidation, settings } from "../scripts/validation.js";
+import {
+  enableValidation,
+  resetValidation,
+  settings,
+} from "../scripts/validation.js";
 
 const initialCards = [
   {
@@ -113,7 +117,7 @@ const toggleLikeBtn = function (btn) {
 
 editProfileBtn.addEventListener("click", () => {
   openModal(editProfileModal);
-  resetValidation(modal, settings);
+  resetValidation(editModalForm, settings);
   // Filling the form fields when opening the modal.
   inputName.value = profileNameEl.textContent;
   inputDescription.value = profileDescriptionEl.textContent.trim();
