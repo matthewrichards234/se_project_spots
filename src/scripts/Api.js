@@ -26,9 +26,14 @@ class Api {
 
   getUserInfo() {
     // initialize user.name from json obj.
+    // "get" user info. parse data is data recieved successfully.
+    // else, throw error.
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
-    });
+    })
+    .then()
+    .catch()
+    .finally();
   }
 
   updateUserInfo() {}
