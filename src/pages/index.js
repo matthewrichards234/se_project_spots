@@ -5,6 +5,9 @@ import {
   settings,
 } from "../scripts/validation.js";
 
+import Api from "../scripts/Api.js";
+import { apiKey } from "../scripts/apiKey.js";
+
 const initialCards = [
   {
     name: "Object 1",
@@ -217,5 +220,21 @@ const handleClickClose = (event) => {
     }
   }
 };
+
+// Instantiate new Api class.
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: apiKey,
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getInitialCards()
+  .then(this._handleServerResponse)
+  .catch((err) => {
+    console.error(err);
+  });
 
 enableValidation(settings);
