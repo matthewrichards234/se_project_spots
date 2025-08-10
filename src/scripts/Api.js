@@ -15,11 +15,25 @@ class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
+  // This method makes a fetch request to our baseUrl and returns a promise.
+  // It sends headers (like extra info like authorization tokens or content type in the HTTP request.)
+  // and then checks and parses the response using _handleServerResponse.
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     }).then(this._handleServerResponse);
   }
+
+  getUserInfo() {
+    // initialize user.name from json obj.
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
+    });
+  }
+
+  updateUserInfo() {}
+
+  updateAvatar() {}
 }
 
 export default Api;

@@ -4,3 +4,6 @@ dist/
 
 # API Key
 src/scripts/apiKey.js
+
+# API TXT
+api.txt

@@ -232,9 +232,13 @@ const api = new Api({
 
 api
   .getInitialCards()
-  .then(this._handleServerResponse)
+  .then((data) => {
+    console.log(data);
+  })
   .catch((err) => {
     console.error(err);
   });
+
+console.log(api.getInitialCards());
 
 enableValidation(settings);
