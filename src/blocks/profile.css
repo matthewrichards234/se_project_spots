@@ -4,11 +4,47 @@
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
 }
 
+.profile__avatar-section {
+  position: relative;
+  display: inline-block;
+}
+
 .profile__avatar {
   height: 190px;
   width: 190px;
   margin-right: 20px;
   border-radius: 7px;
+  display: block;
+}
+
+/* dark overlay */
+.profile__avatar-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 7px;
+  transition: background-color 0.3s ease;
+}
+
+.profile__avatar-section:hover::after {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* edit button positioning */
+.profile__edit-avatar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+/* show button on hover */
+.profile__avatar-section:hover .profile__edit-avatar {
+  opacity: 1;
 }
 
 .profile__column {

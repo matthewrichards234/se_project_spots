@@ -24,11 +24,21 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%= require('./src/images/avatar.jpg') %>"
-            alt="Profile Avatar"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-section">
+            <img
+              src="<%= require('./src/images/avatar.jpg') %>"
+              alt="Profile Avatar"
+              class="profile__avatar profile__avatar_hover"
+            />
+            <button class="profile__edit-avatar">
+              <img
+                src="<%= require('./src/images/pencil.svg')%>"
+                alt="Pencil icon"
+                class="profile__edit-btn-pencil"
+              />
+              Edit Avatar
+            </button>
+          </div>
           <div class="profile__column">
             <h1 class="profile__name" id="profile-name"></h1>
             <p class="profile__description" id="profile-description"></p>
