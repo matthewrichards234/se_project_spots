@@ -149,6 +149,8 @@ function handleProfileFormSubmit(evt) {
     name: profileNameEl.textContent,
     about: profileDescriptionEl.textContent,
   };
+  // Get info from API request.
+  // api.getUserInfo();
   // Call function passing in userInfo object based on users inputs.
   api.updateUserInfo(userInfo);
 
@@ -250,5 +252,14 @@ const api = new Api({
 // Notes & Testing:
 // what could you do with the user information that gets returned from the API?
 // When you want to update user information (like name and description), what data do you think the API needs to receive?
+
+const addProfileToDom = () => {
+  const profileName = document.querySelector("#profile-name");
+  const profileDescription = document.querySelector("#profile-description");
+};
+
+window.addEventListener("load", () => {
+  api.getUserInfo();
+});
 
 enableValidation(settings);
