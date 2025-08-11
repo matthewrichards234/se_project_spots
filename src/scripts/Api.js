@@ -30,6 +30,14 @@ class Api {
       });
   }
 
+  updateCards() {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body:
+    });
+  }
+
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
