@@ -238,10 +238,11 @@ const addProfileToDom = () => {
   });
 };
 
-console.log(addProfileToDom());
+console.log(api.getInitialCards());
 
 window.addEventListener("load", () => {
   api.getUserInfo();
+  addProfileToDom();
 });
 
 enableValidation(settings);

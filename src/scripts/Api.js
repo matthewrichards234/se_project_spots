@@ -30,11 +30,11 @@ class Api {
       });
   }
 
-  updateCards() {
+  createCard() {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
-      body:
+      body: JSON.stringify({}),
     });
   }
 
