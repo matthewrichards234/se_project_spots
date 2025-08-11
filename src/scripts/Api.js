@@ -1,7 +1,9 @@
+import { apiKey } from "../scripts/apiKey.js";
+
 class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
-    this._headers = headers;
+    this._headers = headers; // Where authorization token should go.
   }
 
   // This method receives the fetch response object (`res`) automatically
@@ -21,24 +23,48 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    }).then(this._handleServerResponse);
+    })
+      .then(this._handleServerResponse)
+      .catch((error) => {
+        console.error(`Error: ${error.status}`);
+      });
   }
 
   getUserInfo() {
-    // initialize user.name from json obj.
-    // "get" user info. parse data is data recieved successfully.
-    // else, throw error.
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
+      headers: this._headers,
     })
-    .then()
-    .catch()
-    .finally();
+      .then(this._handleServerResponse)
+      .catch((error) => {
+        console.error(`Error: ${error.status}`);
+      });
   }
 
-  updateUserInfo() {}
+  updateUserInfo(userInfo) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: userInfo.name,
+        about: userInfo.about,
+      }),
+    }).then(this._handleServerResponse);
+    // Update user info:
+    // .then
+    // // Previous then block successfully gets user info.
+    // ()
+  }
 
-  updateAvatar() {}
+  updateAvatar(userInfo) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: userInfo.avatar,
+      }),
+    }).then(this._handleServerResponse);
+  }
 }
 
 export default Api;

@@ -145,6 +145,12 @@ function handleProfileFormSubmit(evt) {
   // Insert these new values into the textContent property of the corresponding profile elements.
   profileNameEl.textContent = inputName.value;
   profileDescriptionEl.textContent = inputDescription.value;
+  const userInfo = {
+    name: profileNameEl.textContent,
+    about: profileDescriptionEl.textContent,
+  };
+  // Call function passing in userInfo object based on users inputs.
+  api.updateUserInfo(userInfo);
 
   closeModal(editProfileModal);
 }
@@ -230,15 +236,19 @@ const api = new Api({
   },
 });
 
-api
-  .getInitialCards()
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+// api
+//   .getInitialCards()
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });
 
-console.log(api.getInitialCards());
+// console.log(api.getInitialCards());
+
+// Notes & Testing:
+// what could you do with the user information that gets returned from the API?
+// When you want to update user information (like name and description), what data do you think the API needs to receive?
 
 enableValidation(settings);
