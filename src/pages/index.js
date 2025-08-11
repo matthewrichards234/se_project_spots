@@ -7,6 +7,7 @@ import {
 
 import Api from "../scripts/Api.js";
 import { apiKey } from "../scripts/apiKey.js";
+import { data } from "autoprefixer";
 
 const initialCards = [
   {
@@ -254,9 +255,13 @@ const api = new Api({
 // When you want to update user information (like name and description), what data do you think the API needs to receive?
 
 const addProfileToDom = () => {
-  const profileName = document.querySelector("#profile-name");
-  const profileDescription = document.querySelector("#profile-description");
+  api.getUserInfo().then((data) => {
+    profileNameEl.textContent = data.name;
+    profileDescriptionEl.textContent = data.about;
+  });
 };
+
+console.log(addProfileToDom());
 
 window.addEventListener("load", () => {
   api.getUserInfo();
