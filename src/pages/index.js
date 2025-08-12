@@ -55,6 +55,30 @@ const inputCardTitle = document.querySelector("#image-caption-input");
 const cardTemplate = document.querySelector("#template");
 const cardList = document.querySelector(".cards__list");
 
+// Edit Avatar Modal, Delete Post Modal, their elements, and functionality (Final Stage):
+// Edit Avatar:
+const editAvatarModal = document.querySelector("#edit-avatar-modal");
+const avatarImageEditBtn = document.querySelector(".profile__edit-avatar");
+const avatarInput = document.querySelector("#avatar-link-input");
+
+avatarImageEditBtn.addEventListener("click", () => {
+  openModal(editAvatarModal);
+});
+
+const editAvatarCloseBtn = editAvatarModal.querySelector(".modal__close-btn");
+editAvatarCloseBtn.addEventListener("click", () => {
+  closeModal(editAvatarModal);
+});
+
+// Delete Post:
+const deletePostModal = document.querySelector("#delete-post-modal");
+const deletePostBtn = cardTemplate.querySelectorAll(".card__delete-btn");
+deletePostBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    openModal(deletePostModal);
+  });
+});
+
 const getCardElement = function (data) {
   // Clone card template to create new cards.
   const cardElement = cardTemplate.content
@@ -75,11 +99,11 @@ const getCardElement = function (data) {
     toggleLikeBtn(cardLikeBtn);
   });
 
-  // Delete functionality
-  const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
-  cardDeleteBtn.addEventListener("click", function () {
-    cardElement.remove();
-  });
+  // Delete functionality - COMMENTING OUT FOR MODAL PROMPT
+  // const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
+  // cardDeleteBtn.addEventListener("click", function () {
+  //   cardElement.remove();
+  // });
 
   // Open card preview modal
   cardImg.addEventListener("click", function () {

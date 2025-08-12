@@ -186,7 +186,7 @@
       <div class="modal modal_edit_avatar" id="edit-avatar-modal">
         <div class="modal__container">
           <h2 class="modal__title">Edit profile avatar</h2>
-          <button class="modal__close-btn"></button>
+          <button class="modal__close-btn modal__close-btn_preview"></button>
           <form action="submit" class="modal__form">
             <label for="profile-picture" class="modal__label"
               >Profile Picture</label
@@ -194,6 +194,7 @@
             <input
               type="url"
               class="modal__input"
+              id="avatar-link-input"
               placeholder="Paste the link to an image"
               name="avatar-link"
               required
@@ -208,10 +209,7 @@
           </form>
         </div>
       </div>
-      <div
-        class="modal modal_delete_post modal_is-opened"
-        id="delete-post-modal"
-      >
+      <div class="modal modal_delete_post" id="delete-post-modal">
         <div class="modal__container">
           <h3 class="modal__title modal__title_delete">
             Are you sure you want to delete this image?
