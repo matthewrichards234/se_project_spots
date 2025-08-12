@@ -73,11 +73,6 @@ editAvatarCloseBtn.addEventListener("click", () => {
 // Delete Post:
 const deletePostModal = document.querySelector("#delete-post-modal");
 const deletePostBtn = cardTemplate.querySelectorAll(".card__delete-btn");
-deletePostBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    openModal(deletePostModal);
-  });
-});
 
 const getCardElement = function (data) {
   // Clone card template to create new cards.
@@ -99,11 +94,12 @@ const getCardElement = function (data) {
     toggleLikeBtn(cardLikeBtn);
   });
 
-  // Delete functionality - COMMENTING OUT FOR MODAL PROMPT
-  // const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
-  // cardDeleteBtn.addEventListener("click", function () {
-  //   cardElement.remove();
-  // });
+  // Delete functionality
+  const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
+  // Prompt Delete Post Modal
+  cardDeleteBtn.addEventListener("click", function () {
+    openModal(deletePostModal);
+  });
 
   // Open card preview modal
   cardImg.addEventListener("click", function () {
