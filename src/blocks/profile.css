@@ -18,20 +18,21 @@
 }
 
 /* dark overlay */
+/* Understand what after does? */
 .profile__avatar-section::after {
   content: "";
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0);
   border-radius: 7px;
-  transition: background-color 0.3s ease;
+  /* transition: background-color 0.3s ease; */
 }
 
 .profile__avatar-section:hover::after {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* edit button positioning */
+/* EDIT this buttons positioning so it is not centered!! */
 .profile__edit-avatar {
   position: absolute;
   top: 50%;

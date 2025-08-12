@@ -75,6 +75,9 @@
   margin: 0 0 32px;
 }
 
+.modal__title_delete {
+}
+
 /* Close Buttons */
 .modal__close-btn,
 .modal__close-btn_preview {
@@ -181,6 +184,33 @@
 
 .modal__error_visible {
   visibility: visible;
+}
+
+/* Delete Post Modal */
+.modal__btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+
+.modal__submit-btn_delete {
+  background-color: #ff6565;
+  color: #212121;
+  text-align: center;
+  padding: 18px 52px;
+}
+
+.modal__submit-btn_delete:hover {
+  background-color: #ff3333;
+  cursor: pointer;
+}
+
+.modal__submit-btn_cancel {
+  background-color: #ffffff;
+  color: #212121;
+  border: black 1px solid;
+  padding: 18px 52px;
 }
 
 /* Responsive */

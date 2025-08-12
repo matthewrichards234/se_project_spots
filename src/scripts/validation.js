@@ -62,7 +62,7 @@ const checkValidity = (input, settings) => {
   }
 };
 
-const toggleButtonState = (inputList, buttonElement, settings) => {
+export const toggleButtonState = (inputList, buttonElement, settings) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(settings.inactiveButtonClass);
     buttonElement.disabled = true;
