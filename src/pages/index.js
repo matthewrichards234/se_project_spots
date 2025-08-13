@@ -268,7 +268,7 @@ const addProfileToDom = () => {
 
 const addUserAvatar = () => {
   api.getUserInfo().then((data) => {
-    profileAvatarEl.textContent = data.avatar;
+    profileAvatarEl.src = data.avatar;
   });
 };
 
@@ -277,6 +277,7 @@ console.log(api.getInitialCards());
 window.addEventListener("load", () => {
   api.getUserInfo();
   addProfileToDom();
+  addUserAvatar();
 });
 
 enableValidation(settings);
