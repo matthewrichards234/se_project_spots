@@ -37,6 +37,20 @@ class Api {
     }).then(this._handleServerResponse);
   }
 
+  likeCard() {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._handleServerResponse);
+  }
+
+  deleteCard() {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
+
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",

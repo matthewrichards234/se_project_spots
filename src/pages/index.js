@@ -10,13 +10,6 @@ import Api from "../scripts/Api.js";
 import { apiKey } from "../scripts/apiKey.js";
 import { data } from "autoprefixer";
 
-// const initialCards = [
-//   {
-//     name: "Golden Gate Bridge",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-//   },
-// ];
-
 // Open Edit & Add Modal Buttons
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const addPostBtn = document.querySelector(".profile__add-btn");
@@ -100,6 +93,7 @@ const getCardElement = function (data) {
   cardTitle.textContent = data.name;
 
   // Like functionality
+  // ADD API CALLS HERE FOR LIKE / DISLIKE
   const cardLikeBtn = cardElement.querySelector(".card__like-btn");
   cardLikeBtn.addEventListener("click", function () {
     toggleLikeBtn(cardLikeBtn);
@@ -287,5 +281,17 @@ window.addEventListener("load", () => {
   addProfileToDom();
   addUserAvatar();
 });
+
+// Log Cards API call Obj (isLiked, name, Link, etc)
+api
+  .getInitialCards()
+  .then((res) => {
+    res.forEach((card) => {
+      console.log(card);
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 enableValidation(settings);
