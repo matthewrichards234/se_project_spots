@@ -60,6 +60,8 @@ const cardList = document.querySelector(".cards__list");
 const editAvatarModal = document.querySelector("#edit-avatar-modal");
 const avatarImageEditBtn = document.querySelector(".profile__edit-avatar");
 const avatarInput = document.querySelector("#avatar-link-input");
+const avatarFormSubmit = editAvatarModal.querySelector(".modal__submit-btn");
+const profileAvatarEl = document.querySelector(".profile__avatar");
 
 avatarImageEditBtn.addEventListener("click", () => {
   openModal(editAvatarModal);
@@ -156,6 +158,15 @@ function handleProfileFormSubmit(evt) {
 }
 editModalForm.addEventListener("submit", handleProfileFormSubmit);
 
+function handleAvatarFormSubmit(evt) {
+  evt.preventDefault();
+  profileAvatarEl.textContent = avatarInput.value;
+  const userAvatar = { avatar: profileAvatarEl.textContent };
+  api.updateAvatar(userAvatar);
+  closeModal(editAvatarModal);
+}
+editAvatarModal.addEventListener("submit", handleAvatarFormSubmit);
+
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const cardData = {
@@ -176,10 +187,6 @@ addModalForm.addEventListener("submit", handleAddCardSubmit);
 // Code a feature that allows the users to close the modal by clicking on the overlay,
 // i.e. anywhere outside the modal’s borders:
 const closeModalViaEvent = (modal) => {
-  // 1. Get the modal that is open... if modal is open:
-  // 2. add an event listener on click and on keypress esc.
-  // 3. How do i determine what constitutes "outside" of a modal? It cannot be static I know that much.
-  // if click not on modal__container, close modal.
   const modalContainer = document.querySelector(".modal__container");
   if (modal.classList.contains("modal_is-opened")) {
     modalContainer.addEventListener("click", (event) => {
@@ -258,6 +265,8 @@ const addProfileToDom = () => {
     profileDescriptionEl.textContent = data.about;
   });
 };
+
+const addUserProfile = () => {};
 
 console.log(api.getInitialCards());
 
