@@ -23,19 +23,18 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    })
-      .then(this._handleServerResponse)
-      .catch((error) => {
-        console.error(`Error: ${error.status}`);
-      });
+    }).then(this._handleServerResponse);
   }
 
-  createCard() {
+  createCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
-      body: JSON.stringify({}),
-    });
+      body: JSON.stringify({
+        name,
+        link,
+      }),
+    }).then(this._handleServerResponse);
   }
 
   getUserInfo() {

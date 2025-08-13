@@ -10,12 +10,12 @@ import Api from "../scripts/Api.js";
 import { apiKey } from "../scripts/apiKey.js";
 import { data } from "autoprefixer";
 
-const initialCards = [
-  {
-    name: "Golden Gate Bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
-];
+// const initialCards = [
+//   {
+//     name: "Golden Gate Bridge",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+//   },
+// ];
 
 // Open Edit & Add Modal Buttons
 const editProfileBtn = document.querySelector(".profile__edit-btn");
@@ -76,6 +76,15 @@ editAvatarCloseBtn.addEventListener("click", () => {
 const deletePostModal = document.querySelector("#delete-post-modal");
 const deletePostBtn = cardTemplate.querySelectorAll(".card__delete-btn");
 
+// Instantiate new Api class.
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: apiKey,
+    "Content-Type": "application/json",
+  },
+});
+
 const getCardElement = function (data) {
   // Clone card template to create new cards.
   const cardElement = cardTemplate.content
@@ -134,11 +143,6 @@ exitPostModal.addEventListener("click", () => closeModal(addPostModal));
 
 exitModalPreiew.addEventListener("click", () => closeModal(modalPreview));
 
-initialCards.forEach(function (item) {
-  const cardElement = getCardElement(item);
-  cardList.prepend(cardElement);
-});
-
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   // Get the values of each form field from the value property of the corresponding input element.
@@ -174,13 +178,16 @@ function handleAddCardSubmit(evt) {
     link: inputCardLink.value,
     name: inputCardTitle.value,
   };
-  const newCard = getCardElement(cardData);
-  console.log(newCard);
-  cardList.prepend(newCard);
-  closeModal(addPostModal);
-  addModalForm.reset();
-  // Prevents Submit button from being active after image is submitted & uploaded.
-  toggleButtonState(addModalForm, savePostBtn, settings);
+
+  api.createCard(cardData).then((res) => {
+    const newCard = getCardElement(res);
+    cardList.prepend(newCard);
+
+    closeModal(addPostModal);
+
+    addModalForm.reset();
+    toggleButtonState(addModalForm, savePostBtn, settings);
+  });
 }
 
 addModalForm.addEventListener("submit", handleAddCardSubmit);
@@ -235,15 +242,6 @@ const handleClickClose = (event) => {
   }
 };
 
-// Instantiate new Api class.
-const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: apiKey,
-    "Content-Type": "application/json",
-  },
-});
-
 // api
 //   .getInitialCards()
 //   .then((data) => {
@@ -272,7 +270,17 @@ const addUserAvatar = () => {
   });
 };
 
-console.log(api.getInitialCards());
+api
+  .getInitialCards()
+  .then((res) => {
+    res.forEach((item) => {
+      const cardElement = getCardElement(item);
+      cardList.prepend(cardElement);
+    });
+  })
+  .catch((error) => {
+    console.error(`Error: ${error.status}`);
+  });
 
 window.addEventListener("load", () => {
   api.getUserInfo();
