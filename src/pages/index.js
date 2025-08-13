@@ -163,6 +163,7 @@ function handleAvatarFormSubmit(evt) {
   profileAvatarEl.textContent = avatarInput.value;
   const userAvatar = { avatar: profileAvatarEl.textContent };
   api.updateAvatar(userAvatar);
+  addUserAvatar();
   closeModal(editAvatarModal);
 }
 editAvatarModal.addEventListener("submit", handleAvatarFormSubmit);
@@ -259,14 +260,17 @@ const api = new Api({
 // When you want to update user information (like name and description), what data do you think the API needs to receive?
 
 const addProfileToDom = () => {
-  // evt.preventDefault();
   api.getUserInfo().then((data) => {
     profileNameEl.textContent = data.name;
     profileDescriptionEl.textContent = data.about;
   });
 };
 
-const addUserProfile = () => {};
+const addUserAvatar = () => {
+  api.getUserInfo().then((data) => {
+    profileAvatarEl.textContent = data.avatar;
+  });
+};
 
 console.log(api.getInitialCards());
 
