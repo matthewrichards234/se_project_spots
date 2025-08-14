@@ -108,9 +108,11 @@ const getCardElement = (data) => {
   cardImg.src = data.link;
   cardImg.alt = data.name;
 
-  cardLikeBtn.addEventListener("click", () => {
-    cardLikeBtn.classList.toggle("card__like-btn_clicked");
-  });
+  if (data.isLiked) {
+    cardLikeBtn.classList.add("card__like-btn_clicked");
+  }
+
+  cardLikeBtn.addEventListener("click", (evt) => handleLike(evt, data._id));
 
   cardDeleteBtn.addEventListener("click", (evt) =>
     handleDeleteCard(cardElement, data._id)
@@ -205,6 +207,17 @@ const handleDeleteCard = (cardElement, cardId) => {
   selectedCard = cardElement;
   selectedCardId = cardId;
   openModal(deletePostModal);
+};
+
+const handleLike = (evt, cardId) => {
+  evt.preventDefault();
+  const isLiked = evt.target.classList.contains("card__like-btn_clicked");
+  api
+    .changeLikeStatus(cardId, !isLiked)
+    .then(() => {
+      evt.target.classList.toggle("card__like-btn_clicked");
+    })
+    .catch(console.error);
 };
 
 // --------------------
