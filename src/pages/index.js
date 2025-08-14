@@ -108,11 +108,14 @@ const getCardElement = (data) => {
   cardImg.src = data.link;
   cardImg.alt = data.name;
 
-  if (data.isLiked) {
+  if (data.isLiked === true) {
     cardLikeBtn.classList.add("card__like-btn_clicked");
   }
 
   cardLikeBtn.addEventListener("click", (evt) => handleLike(evt, data._id));
+  cardLikeBtn.addEventListener("click", () => {
+    console.log(data);
+  });
 
   cardDeleteBtn.addEventListener("click", (evt) =>
     handleDeleteCard(cardElement, data._id)
