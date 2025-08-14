@@ -23,6 +23,7 @@ const previewModal = document.querySelector("#preview-modal");
 
 const editModalForm = editProfileModal.querySelector(".modal__form");
 const addModalForm = addPostModal.querySelector(".modal__form");
+const avatarForm = editAvatarModal.querySelector(".modal__form");
 const avatarInput = document.querySelector("#avatar-link-input");
 
 const deleteSubmit = deletePostModal.querySelector(".modal__submit-btn_delete");
@@ -141,14 +142,29 @@ const renderCard = (cardData, prepend = false) => {
 };
 
 // --------------------
+// SAVING & DELETE TEXT CONTENT
+// --------------------
+const displayLoadingText = (btn, isLoading, loadingText, defaultText) => {
+  if (isLoading) {
+    btn.textContent = loadingText;
+  } else {
+    btn.textContent = defaultText;
+  }
+};
+
+// --------------------
 // FORM HANDLERS
 // --------------------
 const handleProfileFormSubmit = (e) => {
   e.preventDefault();
+
   const userInfo = {
     name: inputName.value,
     about: inputDescription.value,
   };
+
+  const submitBtn = e.submitter;
+  displayLoadingText(submitBtn, true, "Saving...", "Save");
 
   api
     .updateUserInfo(userInfo)
@@ -157,20 +173,29 @@ const handleProfileFormSubmit = (e) => {
       profileDescriptionEl.textContent = updated.about;
       closeModal(editProfileModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      displayLoadingText(submitBtn, false, "Saving...", "Save");
+    });
 };
 
 const handleAvatarFormSubmit = (e) => {
   e.preventDefault();
+  const submitBtn = e.submitter;
+  displayLoadingText(submitBtn, true, "Saving...", "Save");
   const userAvatar = { avatar: avatarInput.value };
 
   api
     .updateAvatar(userAvatar)
     .then((updated) => {
       profileAvatarEl.src = updated.avatar;
+      avatarForm.reset();
       closeModal(editAvatarModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      displayLoadingText(submitBtn, false, "Saving...", "Save");
+    });
 };
 
 const handleAddCardSubmit = (e) => {
@@ -195,15 +220,19 @@ const handleAddCardSubmit = (e) => {
     .catch(console.error);
 };
 
-const handleDeleteSubmit = (evt) => {
-  evt.preventDefault();
+const handleDeleteSubmit = (e) => {
+  e.preventDefault();
+  displayLoadingText(deleteSubmit, true, "Deleting...", "Delete");
   api
     .deleteCard(selectedCardId)
     .then(() => {
       selectedCard.remove();
       closeModal(deletePostModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      displayLoadingText(deleteSubmit, false, "Deleting...", "Delete");
+    });
 };
 
 const handleDeleteCard = (cardElement, cardId) => {
