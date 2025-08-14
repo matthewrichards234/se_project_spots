@@ -8,68 +8,40 @@ import {
 
 import Api from "../scripts/Api.js";
 import { apiKey } from "../scripts/apiKey.js";
-import { data } from "autoprefixer";
 
-// Open Edit & Add Modal Buttons
+// --------------------
+// DOM SELECTORS
+// --------------------
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const addPostBtn = document.querySelector(".profile__add-btn");
 
-// Edit & Add Modals
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const addPostModal = document.querySelector("#new-post-modal");
+const editAvatarModal = document.querySelector("#edit-avatar-modal");
+const deletePostModal = document.querySelector("#delete-post-modal");
+const previewModal = document.querySelector("#preview-modal");
 
-// Exit Edit & Add Modal Buttons
-const exitProfileModal = editProfileModal.querySelector(".modal__close-btn");
-const exitPostModal = addPostModal.querySelector(".modal__close-btn");
-
-// Edit & Add Modal Forms
 const editModalForm = editProfileModal.querySelector(".modal__form");
 const addModalForm = addPostModal.querySelector(".modal__form");
+const avatarInput = document.querySelector("#avatar-link-input");
 
-// Preview Modals
-const modalPreview = document.querySelector("#preview-modal");
-const exitModalPreiew = modalPreview.querySelector(".modal__close-btn");
-const previewImageEl = modalPreview.querySelector(".modal__image");
-const previewCaptionEl = modalPreview.querySelector(".modal__caption");
-
-// Submit Modal Buttons
-const saveProfileBtn = editProfileBtn.querySelector(".modal__submit-btn");
-const savePostBtn = addPostModal.querySelector(".modal__submit-btn");
-
-// Modal Elements
 const profileNameEl = document.querySelector("#profile-name");
 const profileDescriptionEl = document.querySelector("#profile-description");
 const inputName = document.querySelector("#profile-name-input");
 const inputDescription = document.querySelector("#profile-description-input");
 const inputCardLink = document.querySelector("#image-link-input");
 const inputCardTitle = document.querySelector("#image-caption-input");
+const profileAvatarEl = document.querySelector(".profile__avatar");
 
-// Card Selectors
+const previewImageEl = previewModal.querySelector(".modal__image");
+const previewCaptionEl = previewModal.querySelector(".modal__caption");
+
 const cardTemplate = document.querySelector("#template");
 const cardList = document.querySelector(".cards__list");
 
-// Edit Avatar Modal, Delete Post Modal, their elements, and functionality (Final Stage):
-// Edit Avatar:
-const editAvatarModal = document.querySelector("#edit-avatar-modal");
-const avatarImageEditBtn = document.querySelector(".profile__edit-avatar");
-const avatarInput = document.querySelector("#avatar-link-input");
-const avatarFormSubmit = editAvatarModal.querySelector(".modal__submit-btn");
-const profileAvatarEl = document.querySelector(".profile__avatar");
-
-avatarImageEditBtn.addEventListener("click", () => {
-  openModal(editAvatarModal);
-});
-
-const editAvatarCloseBtn = editAvatarModal.querySelector(".modal__close-btn");
-editAvatarCloseBtn.addEventListener("click", () => {
-  closeModal(editAvatarModal);
-});
-
-// Delete Post:
-const deletePostModal = document.querySelector("#delete-post-modal");
-const deletePostBtn = cardTemplate.querySelectorAll(".card__delete-btn");
-
-// Instantiate new Api class.
+// --------------------
+// API INSTANCE
+// --------------------
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -78,220 +50,198 @@ const api = new Api({
   },
 });
 
-const getCardElement = function (data) {
-  // Clone card template to create new cards.
-  const cardElement = cardTemplate.content
-    .querySelector(".card")
-    .cloneNode(true);
-  // Get title & img from cloned node.
-  const cardTitle = cardElement.querySelector(".card__title");
-  const cardImg = cardElement.querySelector(".card__image");
-
-  // Set approprite attributes to cloned node via Cards object.
-  cardImg.src = data.link;
-  cardImg.alt = data.name;
-  cardTitle.textContent = data.name;
-
-  // Like functionality
-  // ADD API CALLS HERE FOR LIKE / DISLIKE
-  const cardLikeBtn = cardElement.querySelector(".card__like-btn");
-  cardLikeBtn.addEventListener("click", function () {
-    toggleLikeBtn(cardLikeBtn);
-  });
-
-  // Delete functionality
-  const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
-  // Prompt Delete Post Modal
-  cardDeleteBtn.addEventListener("click", function () {
-    openModal(deletePostModal);
-  });
-
-  // Open card preview modal
-  cardImg.addEventListener("click", function () {
-    previewCaptionEl.textContent = data.name;
-    previewImageEl.src = data.link;
-    previewImageEl.alt = data.name;
-    openModal(modalPreview);
-  });
-
-  return cardElement;
-};
-
-const toggleLikeBtn = function (btn) {
-  btn.classList.toggle("card__like-btn_clicked");
-};
-
-editProfileBtn.addEventListener("click", () => {
-  openModal(editProfileModal);
-  resetValidation(editModalForm, settings);
-  // Filling the form fields when opening the modal.
-  inputName.value = profileNameEl.textContent;
-  inputDescription.value = profileDescriptionEl.textContent.trim();
-});
-
-addPostBtn.addEventListener("click", () => openModal(addPostModal));
-
-exitProfileModal.addEventListener("click", () => closeModal(editProfileModal));
-
-exitPostModal.addEventListener("click", () => closeModal(addPostModal));
-
-exitModalPreiew.addEventListener("click", () => closeModal(modalPreview));
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  // Get the values of each form field from the value property of the corresponding input element.
-  // Insert these new values into the textContent property of the corresponding profile elements.
-  profileNameEl.textContent = inputName.value;
-  profileDescriptionEl.textContent = inputDescription.value;
-  const userInfo = {
-    name: profileNameEl.textContent,
-    about: profileDescriptionEl.textContent,
-  };
-  // Get info from API request.
-  // api.getUserInfo();
-  // Call function passing in userInfo object based on users inputs.
-  api.updateUserInfo(userInfo);
-
-  closeModal(editProfileModal);
-}
-editModalForm.addEventListener("submit", handleProfileFormSubmit);
-
-function handleAvatarFormSubmit(evt) {
-  evt.preventDefault();
-  profileAvatarEl.textContent = avatarInput.value;
-  const userAvatar = { avatar: profileAvatarEl.textContent };
-  api.updateAvatar(userAvatar);
-  addUserAvatar();
-  closeModal(editAvatarModal);
-}
-editAvatarModal.addEventListener("submit", handleAvatarFormSubmit);
-
-function handleAddCardSubmit(evt) {
-  evt.preventDefault();
-  const cardData = {
-    link: inputCardLink.value,
-    name: inputCardTitle.value,
-  };
-
-  api.createCard(cardData).then((res) => {
-    const newCard = getCardElement(res);
-    cardList.prepend(newCard);
-
-    closeModal(addPostModal);
-
-    addModalForm.reset();
-    toggleButtonState(addModalForm, savePostBtn, settings);
-  });
-}
-
-addModalForm.addEventListener("submit", handleAddCardSubmit);
-
-// Code a feature that allows the users to close the modal by clicking on the overlay,
-// i.e. anywhere outside the modal’s borders:
-const closeModalViaEvent = (modal) => {
-  const modalContainer = document.querySelector(".modal__container");
-  if (modal.classList.contains("modal_is-opened")) {
-    modalContainer.addEventListener("click", (event) => {
-      if (event.target !== modalContainer) {
-        closeModal(modal);
-      }
-    });
-  }
-};
-
-const closeModal = function (modal) {
-  modal.classList.remove("modal_is-opened");
-  document.removeEventListener("keydown", handleEscapeClose);
-  modal.removeEventListener("click", handleClickClose);
-};
-
-const openModal = function (modal) {
+// --------------------
+// MODAL HANDLING
+// --------------------
+const openModal = (modal) => {
   modal.classList.add("modal_is-opened");
   document.addEventListener("keydown", handleEscapeClose);
   modal.addEventListener("click", handleClickClose);
 };
 
-// Add event listener on open modal, remove it on close modal.
-// Create a function that recieves an event and closes modal based on event.
-const handleEscapeClose = (event) => {
-  // Assume modal is open.
+const closeModal = (modal) => {
+  modal.classList.remove("modal_is-opened");
+  document.removeEventListener("keydown", handleEscapeClose);
+  modal.removeEventListener("click", handleClickClose);
+};
+
+const handleEscapeClose = (e) => {
   const modal = document.querySelector(".modal_is-opened");
-  if (event.key === "Escape") {
+  if (e.key === "Escape" && modal) {
     closeModal(modal);
-    // reset addPostModal on escape key press.
-    if (modal === addPostModal) {
-      addModalForm.reset();
-    }
+    if (modal === addPostModal) addModalForm.reset();
   }
 };
 
-const handleClickClose = (event) => {
+const handleClickClose = (e) => {
   const modal = document.querySelector(".modal_is-opened");
-  if (event.target.classList.contains("modal_is-opened")) {
+  if (e.target.classList.contains("modal_is-opened")) {
     closeModal(modal);
-    // reset addPostModal on click away.
-    if (modal === addPostModal) {
-      addModalForm.reset();
-    }
+    if (modal === addPostModal) addModalForm.reset();
   }
 };
 
-// api
-//   .getInitialCards()
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//   });
+// --------------------
+// CARD FUNCTIONS
+// --------------------
+const getCardElement = (data) => {
+  const cardElement = cardTemplate.content
+    .querySelector(".card")
+    .cloneNode(true);
 
-// console.log(api.getInitialCards());
+  const cardTitle = cardElement.querySelector(".card__title");
+  const cardImg = cardElement.querySelector(".card__image");
+  const cardLikeBtn = cardElement.querySelector(".card__like-btn");
+  const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
 
-// Notes & Testing:
-// what could you do with the user information that gets returned from the API?
-// When you want to update user information (like name and description), what data do you think the API needs to receive?
+  cardTitle.textContent = data.name;
+  cardImg.src = data.link;
+  cardImg.alt = data.name;
 
-const addProfileToDom = () => {
-  api.getUserInfo().then((data) => {
-    profileNameEl.textContent = data.name;
-    profileDescriptionEl.textContent = data.about;
+  cardLikeBtn.addEventListener("click", () => {
+    cardLikeBtn.classList.toggle("card__like-btn_clicked");
   });
+
+  cardDeleteBtn.addEventListener("click", () => {
+    openModal(deletePostModal);
+  });
+
+  cardImg.addEventListener("click", () => {
+    previewCaptionEl.textContent = data.name;
+    previewImageEl.src = data.link;
+    previewImageEl.alt = data.name;
+    openModal(previewModal);
+  });
+
+  return cardElement;
 };
 
-const addUserAvatar = () => {
-  api.getUserInfo().then((data) => {
-    profileAvatarEl.src = data.avatar;
-  });
+const renderCard = (cardData, prepend = false) => {
+  const cardElement = getCardElement(cardData);
+  if (prepend) {
+    cardList.prepend(cardElement);
+  } else {
+    cardList.append(cardElement);
+  }
 };
 
-api
-  .getInitialCards()
-  .then((res) => {
-    res.forEach((item) => {
-      const cardElement = getCardElement(item);
-      cardList.prepend(cardElement);
-    });
-  })
-  .catch((error) => {
-    console.error(`Error: ${error.status}`);
-  });
+// --------------------
+// FORM HANDLERS
+// --------------------
+const handleProfileFormSubmit = (e) => {
+  e.preventDefault();
+  const userInfo = {
+    name: inputName.value,
+    about: inputDescription.value,
+  };
 
-window.addEventListener("load", () => {
-  api.getUserInfo();
-  addProfileToDom();
-  addUserAvatar();
+  api
+    .updateUserInfo(userInfo)
+    .then((updated) => {
+      profileNameEl.textContent = updated.name;
+      profileDescriptionEl.textContent = updated.about;
+      closeModal(editProfileModal);
+    })
+    .catch(console.error);
+};
+
+const handleAvatarFormSubmit = (e) => {
+  e.preventDefault();
+  const userAvatar = { avatar: avatarInput.value };
+
+  api
+    .updateAvatar(userAvatar)
+    .then((updated) => {
+      profileAvatarEl.src = updated.avatar;
+      closeModal(editAvatarModal);
+    })
+    .catch(console.error);
+};
+
+const handleAddCardSubmit = (e) => {
+  e.preventDefault();
+  const cardData = {
+    link: inputCardLink.value,
+    name: inputCardTitle.value,
+  };
+
+  api
+    .createCard(cardData)
+    .then((newCard) => {
+      renderCard(newCard, true);
+      closeModal(addPostModal);
+      addModalForm.reset();
+      toggleButtonState(
+        addModalForm,
+        addPostModal.querySelector(".modal__submit-btn"),
+        settings
+      );
+    })
+    .catch(console.error);
+};
+
+// --------------------
+// DATA LOADING
+// --------------------
+const loadUserInfo = () => {
+  api
+    .getUserInfo()
+    .then((data) => {
+      profileNameEl.textContent = data.name;
+      profileDescriptionEl.textContent = data.about;
+      profileAvatarEl.src = data.avatar;
+    })
+    .catch(console.error);
+};
+
+const loadInitialCards = () => {
+  api
+    .getInitialCards()
+    .then((cards) => cards.forEach((card) => renderCard(card)))
+    .catch(console.error);
+};
+
+// --------------------
+// EVENT LISTENERS
+// --------------------
+editProfileBtn.addEventListener("click", () => {
+  inputName.value = profileNameEl.textContent;
+  inputDescription.value = profileDescriptionEl.textContent.trim();
+  resetValidation(editModalForm, settings);
+  openModal(editProfileModal);
 });
 
-// Log Cards API call Obj (isLiked, name, Link, etc)
-api
-  .getInitialCards()
-  .then((res) => {
-    res.forEach((card) => {
-      console.log(card);
-    });
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+addPostBtn.addEventListener("click", () => openModal(addPostModal));
 
-enableValidation(settings);
+profileAvatarEl.addEventListener("click", () => openModal(editAvatarModal));
+
+editModalForm.addEventListener("submit", handleProfileFormSubmit);
+editAvatarModal.addEventListener("submit", handleAvatarFormSubmit);
+addModalForm.addEventListener("submit", handleAddCardSubmit);
+
+previewModal
+  .querySelector(".modal__close-btn")
+  .addEventListener("click", () => closeModal(previewModal));
+editProfileModal
+  .querySelector(".modal__close-btn")
+  .addEventListener("click", () => closeModal(editProfileModal));
+addPostModal
+  .querySelector(".modal__close-btn")
+  .addEventListener("click", () => closeModal(addPostModal));
+editAvatarModal
+  .querySelector(".modal__close-btn")
+  .addEventListener("click", () => closeModal(editAvatarModal));
+deletePostModal
+  .querySelector(".modal__close-btn")
+  .addEventListener("click", () => closeModal(deletePostModal));
+
+// --------------------
+// INIT
+// --------------------
+const init = () => {
+  loadUserInfo();
+  loadInitialCards();
+  enableValidation(settings);
+};
+
+window.addEventListener("load", init);

@@ -44,11 +44,11 @@ class Api {
     }).then(this._handleServerResponse);
   }
 
-  deleteCard() {
-    return fetch(`${this._baseUrl}/cards`, {
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
-    });
+    }).then(this._handleServerResponse);
   }
 
   getUserInfo() {
