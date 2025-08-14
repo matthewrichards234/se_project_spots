@@ -25,6 +25,9 @@ const editModalForm = editProfileModal.querySelector(".modal__form");
 const addModalForm = addPostModal.querySelector(".modal__form");
 const avatarInput = document.querySelector("#avatar-link-input");
 
+const deleteSubmit = deletePostModal.querySelector(".modal__submit-btn_delete");
+const deleteCancel = deletePostModal.querySelector(".modal__submit-btn_cancel");
+
 const profileNameEl = document.querySelector("#profile-name");
 const profileDescriptionEl = document.querySelector("#profile-description");
 const inputName = document.querySelector("#profile-name-input");
@@ -32,12 +35,19 @@ const inputDescription = document.querySelector("#profile-description-input");
 const inputCardLink = document.querySelector("#image-link-input");
 const inputCardTitle = document.querySelector("#image-caption-input");
 const profileAvatarEl = document.querySelector(".profile__avatar");
+const editAvatarBtn = document.querySelector(".profile__edit-avatar");
 
 const previewImageEl = previewModal.querySelector(".modal__image");
 const previewCaptionEl = previewModal.querySelector(".modal__caption");
 
 const cardTemplate = document.querySelector("#template");
 const cardList = document.querySelector(".cards__list");
+
+// --------------------
+// DELETE CARD DATA
+// --------------------
+
+let selectedCard, selectedCardId;
 
 // --------------------
 // API INSTANCE
@@ -102,9 +112,9 @@ const getCardElement = (data) => {
     cardLikeBtn.classList.toggle("card__like-btn_clicked");
   });
 
-  cardDeleteBtn.addEventListener("click", () => {
-    openModal(deletePostModal);
-  });
+  cardDeleteBtn.addEventListener("click", (evt) =>
+    handleDeleteCard(cardElement, data._id)
+  );
 
   cardImg.addEventListener("click", () => {
     previewCaptionEl.textContent = data.name;
@@ -180,6 +190,23 @@ const handleAddCardSubmit = (e) => {
     .catch(console.error);
 };
 
+const handleDeleteSubmit = (evt) => {
+  evt.preventDefault();
+  api
+    .deleteCard(selectedCardId)
+    .then(() => {
+      selectedCard.remove();
+      closeModal(deletePostModal);
+    })
+    .catch(console.error);
+};
+
+const handleDeleteCard = (cardElement, cardId) => {
+  selectedCard = cardElement;
+  selectedCardId = cardId;
+  openModal(deletePostModal);
+};
+
 // --------------------
 // DATA LOADING
 // --------------------
@@ -234,6 +261,10 @@ editAvatarModal
 deletePostModal
   .querySelector(".modal__close-btn")
   .addEventListener("click", () => closeModal(deletePostModal));
+editAvatarBtn.addEventListener("click", () => openModal(editAvatarModal));
+
+deleteSubmit.addEventListener("click", handleDeleteSubmit);
+deleteCancel.addEventListener("click", () => closeModal(deletePostModal));
 
 // --------------------
 // INIT
