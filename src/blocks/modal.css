@@ -238,4 +238,33 @@
     width: 100%;
     max-width: none;
   }
+
+  .modal__container_delete {
+    position: relative;
+  }
+
+  .modal__title_delete {
+    font-size: 20px;
+    line-height: 120%;
+    text-align: center;
+  }
+
+  .modal__btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal__submit-btn_delete,
+  .modal__submit-btn_cancel {
+    width: 156px;
+  }
+
+  .modal__close-btn_delete {
+    position: absolute;
+    top: -48px;
+    right: 0;
+    background-image: url(../images/previewCloseBtn.svg);
+  }
 }
