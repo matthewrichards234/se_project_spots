@@ -4,53 +4,55 @@
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
 }
 
+/* Avatar section & Edit Avatar button */
 .profile__avatar-section {
   position: relative;
   display: inline-block;
 }
 
-.profile__avatar {
-  height: 190px;
-  width: 190px;
-  margin-right: 20px;
-  border-radius: 7px;
-  display: block;
-}
-
-/* dark overlay */
-/* Understand what after does? */
-.profile__avatar-section::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0);
-  border-radius: 7px;
-  /* transition: background-color 0.3s ease; */
-}
-
-.profile__avatar-section:hover::after {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* EDIT this buttons positioning so it is not centered!! */
 .profile__edit-avatar {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1;
+  position: relative;
+  display: inline-block;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
-/* show button on hover */
-.profile__avatar-section:hover .profile__edit-avatar {
-  opacity: 1;
+.profile__avatar {
+  display: block;
+  width: 190px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.profile__edit-txt {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* match image width */
+  height: 100%; /* match image height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0); /* start transparent */
+  color: white;
+  font-weight: bold;
+  border-radius: 7px; /* match avatar rounding */
+  opacity: 0;
+  transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+.profile__edit-avatar:hover .profile__edit-txt {
+  background: rgba(0, 0, 0, 0.6); /* dark overlay */
+  opacity: 1; /* show text */
 }
 
 .profile__column {
   display: flex;
   flex-direction: column;
+  margin-left: 20px;
 }
 
 .profile__name {
