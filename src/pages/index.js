@@ -243,9 +243,9 @@ const handleDeleteCard = (cardElement, cardId) => {
 
 const handleLike = (evt, cardId) => {
   evt.preventDefault();
-  const isLiked = evt.target.classList.contains("card__like-btn_clicked");
+  const containsLiked = evt.target.classList.contains("card__like-btn_clicked");
   api
-    .changeLikeStatus(cardId, !isLiked)
+    .changeLikeStatus(cardId, !containsLiked)
     .then(() => {
       evt.target.classList.toggle("card__like-btn_clicked");
     })
